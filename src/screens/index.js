@@ -3,7 +3,7 @@ export { default as Login } from './Login';
 export { default as SignUp } from './SignUp';
 export { default as ForgotPassword } from './ForgotPassword';
 export { default as MobileNumber } from './MobileNumber';
-export { default as VerifyMobileNumber } from './VerifyMobileNumber';
+export { default as Verification } from './Verification';
 
 // App screens
 export { default as SplashScreen } from './SplashScreen';

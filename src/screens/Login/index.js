@@ -39,11 +39,12 @@ export default Login = ({ navigation }) => {
               placeholder="Email"
               keyboardType="email-address"
               style={styles.textInput}
+              placeholderTextColor={colors.lightGrey}
             />
           </View>
           <TouchableOpacity
             onPress={() => {
-              console.log('...Login...');
+              navigation.navigate('Verification');
             }}>
             <View style={styles.btnView}>
               <Text style={styles.loginBtn}>LOGIN</Text>

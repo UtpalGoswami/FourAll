@@ -17,21 +17,39 @@ const styles = StyleSheet.create({
     },
     logoImage: {
         alignSelf: 'center',
-        marginBottom:20
+        marginBottom: 20
+    },
+    textView: {
+        alignItems: 'center',
+        marginVertical: 20,
     },
     welcomeText: {
-        color:colors.black,
+        color: colors.black,
         fontSize: 20,
         fontWeight: 'bold',
-        marginVertical: 30,
+        marginVertical: 10,
+    },
+    descText: {
+        color: colors.black,
+        fontSize: 14,
+        fontWeight: 'bold',
+    },
+    otpView: {
+        flexDirection: 'row',
+        justifyContent:'center',
     },
     textInputView: {
-        borderBottomColor: colors.gray,
-        borderBottomWidth: 0.7,
-        marginVertical:10
+        flexDirection: 'row',
+        borderBottomColor: colors.authBtn,
+        borderBottomWidth: 0.8,
+        marginVertical: 10,
+        width: '18%',
+        marginStart: 10
     },
     textInput: {
-        padding: 10
+        padding: 10,
+        color:colors.black,
+        alignSelf:'center'
     },
     btnView: {
         marginVertical: 20,
@@ -47,16 +65,19 @@ const styles = StyleSheet.create({
     loginBtn: {
         fontSize: 16,
         color: colors.white,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
     },
     forgotView: {
-        marginVertical: 20,
-        alignItems: 'center',
+        flexDirection: 'row',
+        marginVertical: 10,
+        justifyContent: 'center',
     },
     forgotText: {
-        color:colors.black,
+        color: colors.black,
         fontWeight: '500',
-        fontSize: 16,
+        fontSize: 12,
+        marginStart: 5,
     }
 });
 

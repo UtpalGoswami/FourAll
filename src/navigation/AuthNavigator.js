@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Login, SignUp, ForgotPassword, MobileNumber, VerifyMobileNumber, IntroSlider } from "../screens";
+import { Login, SignUp, ForgotPassword, MobileNumber, Verification, IntroSlider } from "../screens";
 
 const Stack = createStackNavigator();
 
@@ -23,8 +23,8 @@ export default AuthNavigator = () => (
             component={MobileNumber}
         />
         <Stack.Screen
-            name="VerifyMobileNumber"
-            component={VerifyMobileNumber}
+            name="Verification"
+            component={Verification}
         />
         <Stack.Screen
             name="Login"
