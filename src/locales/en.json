@@ -1,0 +1,34 @@
+{
+	"connection": {
+		"errorMessage": "Please check your internet connection."
+	},
+	"commonError": {
+		"errorMessage": "No data found."
+	},
+	"buttonText": {
+		"loginUpButtonText": "LOG IN",
+		"signUpButtonText": "SIGN UP",
+		"headerBackButton": "Back to Login"
+	},
+	"loginPage": {
+		"titleLabel": "Sign in to read the full library."
+	},
+	"forgotPasswordPage": {
+		"titleLabel": "Forgot Password"
+	},
+	"registerPage": {
+		"titleLabel": "Create your Tattlebox account"
+	},
+	"resetPasswordPage": {
+		"titleLabel": "RESET YOUR PASSWORD"
+	},
+	"navigation": {
+		"HOME": "HOME",
+		"HOME_linkDevicePage": "HOME_STACK",
+		"FAVORITES": "FAVORITES",
+		"FAVORITES_STACK": "FAVORITES_STACK",
+		"SETTINGS": "SETTINGS",
+		"SETTINGS_STACK": "SETTINGS_STACK"
+	},
+	"dashboardPage": {}
+}
