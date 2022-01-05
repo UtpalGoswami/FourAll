@@ -4,6 +4,7 @@ export { default as SignUp } from './SignUp';
 export { default as ForgotPassword } from './ForgotPassword';
 export { default as MobileNumber } from './MobileNumber';
 export { default as Verification } from './Verification';
+export { default as AddUser } from './AddUser';
 
 // App screens
 export { default as SplashScreen } from './SplashScreen';

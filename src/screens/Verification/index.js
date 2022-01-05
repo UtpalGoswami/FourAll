@@ -116,7 +116,7 @@ export default Verification = ({ navigation }) => {
           </View>
           <TouchableOpacity
             onPress={() => {
-              console.log('...Verification...');
+              navigation.navigate('AddUser');
             }}>
             <View style={styles.btnView}>
               <Text style={styles.loginBtn}>Verify</Text>

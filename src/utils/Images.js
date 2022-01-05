@@ -18,5 +18,11 @@ const Images = {
     // Screen image
     introSlider: require('@Images/slider/slider.jpg'),
 
+    bgTop: require('@Images/all/03.png'),
+    bgBottom: require('@Images/all/04.png'),
+    userImage: require('@Images/all/05.png'),
+    userBg: require('@Images/all/06.png'),
+    cameraIcon: require('@Images/all/07.png'),
+
 }
 export default Images;

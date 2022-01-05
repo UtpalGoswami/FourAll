@@ -24,4 +24,5 @@ export default colors = {
     green: 'rgba(27, 172, 14, 0.93)',
     submit: '#016ABC',
     authBtn: '#ffcc70',
+    imageBgGreen: '#63b77b',
 }
