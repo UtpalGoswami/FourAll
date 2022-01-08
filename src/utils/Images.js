@@ -24,5 +24,11 @@ const Images = {
     userBg: require('@Images/all/06.png'),
     cameraIcon: require('@Images/all/07.png'),
 
+    //BottomTab
+    reelsIcon: require('@Images/all/08.png'),
+    chatIcon: require('@Images/all/09.png'),
+    createReelIcon: require('@Images/all/10.png'),
+    ownReelIcon: require('@Images/all/11.png'),
+    settingIcon: require('@Images/all/12.png'),
 }
 export default Images;

@@ -5,10 +5,10 @@ import { colors, I18n } from '../../constants';
 import styles from './style';
 
 /**
- * @class Home
+ * @class Reels
  * @param  {Object} navigation - Use for navigation
  */
-export default Home = ({ navigation }) => {
+export default Reels = ({ navigation }) => {
 
   /**
    * Set user firstname value.
@@ -18,14 +18,14 @@ export default Home = ({ navigation }) => {
   const [spinner, setSpinner] = useState(false);
 
   useEffect(()=>{
-    console.log('Home');
+    console.log('Reels');
   },[]);
 
 
   return (
     <SafeAreaView style={styles.safeView}>
       <View style={styles.container}>
-        <Text>Home</Text>
+        <Text>Reels</Text>
       </View>
     </SafeAreaView>
   );

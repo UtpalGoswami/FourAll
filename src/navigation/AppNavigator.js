@@ -1,71 +1,92 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
-  Home,
-  Setting
+  Setting,
+  Chat,
+  CreateReel,
+  Reels,
+  OwnReel
 } from "../screens";
-// Import vector icons
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import { colors } from '../constants';
+import Images from '../utils/Images';
 
 const Tab = createBottomTabNavigator();
 
-export default AppNavigator = () =>(
-    <Tab.Navigator
-      initialRouteName="Home"
-      screenOptions={{
-        tabBarActiveTintColor: colors.submit,
+export default AppNavigator = () => (
+  <Tab.Navigator
+    initialRouteName="CreateReel"
+    screenOptions={{
+      tabBarActiveTintColor: colors.submit,
+      headerShown: false,
+    }}>
+    <Tab.Screen
+      name="Reel"
+      component={Reels}
+      options={{
+        tabBarColor: colors.blue,
+        tabBarLabel: '',
+        tabBarIcon: ({ color, size }) => (
+          <Image source={Images.reelsIcon} style={{ tintColor: color }} size={size} />
+        ),
       }}
-    >
-      <Tab.Screen
-        name="Home"
-        component={Home}
-        options={{
-          tabBarLabel: 'Home',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Setting"
-        component={Setting}
-        options={{
-          tabBarLabel: 'Setting',
-          tabBarIcon: ({ color, size }) => (
-            <AntDesign name="setting" color={color} size={size} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
-  )
+    />
+    <Tab.Screen
+      name="Chat"
+      component={Chat}
+      options={{
+        tabBarLabel: '',
+        tabBarIcon: ({ color, size }) => (
+          <Image source={Images.chatIcon} style={{ tintColor: color }} size={size} />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="CreateReel"
+      component={CreateReel}
+      options={{
+        tabBarLabel: '',
+        tabBarIcon: ({ color, size }) => (
+          <View style={[styles.centerIcon, { borderColor: color }]}>
+            <Image source={Images.createReelIcon} style={{ transform: [{ rotate: '-45deg' }], tintColor: color }} size={size} />
+          </View>
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="ownReelIcon"
+      component={OwnReel}
+      options={{
+        tabBarLabel: '',
+        tabBarIcon: ({ color, size }) => (
+          <Image source={Images.ownReelIcon} style={{ tintColor: color }} size={size} />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="Setting"
+      component={Setting}
+      options={{
+        tabBarLabel: '',
+        tabBarIcon: ({ color, size }) => (
+          <Image source={Images.settingIcon} style={{ tintColor: color }} size={size} />
+        ),
+      }}
+    />
+  </Tab.Navigator>
+)
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: colors.white
-  },
-  mainView: {
-    flexDirection: 'column',
-    flex: 1
-  },
-  detailsView: {
-    height: 150,
-    backgroundColor: colors.appCommonColor,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  locationHeader: {
-    flexDirection: 'row',
+  centerIcon: {
+    height: 50,
+    width: 50,
+    borderRadius: 5,
+    borderWidth: 1.2,
+    backgroundColor: colors.white,
+    paddingTop: 15,
     alignItems: 'center',
-    justifyContent: 'center'
+    transform: [{ rotate: '45deg' }],
+    position: 'absolute',
+    bottom: 10
   },
-  headerText: {
-    color: colors.appCommonColor,
-    fontSize: 18,
-    fontWeight: '500'
-  }
 });

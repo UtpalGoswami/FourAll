@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { View, Text, SafeAreaView, ImageBackground, Image } from 'react-native';
+import { View, Text, SafeAreaView, ImageBackground, Image, Modal } from 'react-native';
 import { colors, I18n } from '../../constants';
 import { UselessTextInput } from '../../components';
 // Images
@@ -21,7 +21,7 @@ export default AddUser = ({ navigation }) => {
 
   const [spinner, setSpinner] = useState(false);
   const [userName, setUserName] = useState('');
-  
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     console.log('AddUser');
@@ -37,7 +37,7 @@ export default AddUser = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.safeView}>
-      <View style={styles.container}>
+      <View style={[styles.container, { opacity: modalVisible ? 0.3 : null }]}>
         <View style={styles.topView}>
           <ImageBackground source={Images.userBg} style={styles.bgTop}>
             <View style={styles.userIconView}>
@@ -60,9 +60,7 @@ export default AddUser = ({ navigation }) => {
             />
           </View>
           <TouchableOpacity
-            onPress={() => {
-              // navigation.navigate('Verification');
-            }}>
+            onPress={() => setModalVisible(true)}>
             <View style={styles.btnView}>
               <Text style={styles.loginBtn}>SUBMIT</Text>
             </View>
@@ -72,6 +70,38 @@ export default AddUser = ({ navigation }) => {
           <ImageBackground source={Images.bgBottom} style={styles.bgBottom}>
           </ImageBackground>
         </View>
+
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(!modalVisible);
+          }}>
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Text style={styles.modalTitleText}>"4All" would like to
+                access your contact?</Text>
+              <Text style={styles.modalDescText}>This lets you see which of your friends
+                are on the app</Text>
+              <View style={styles.buttonView}>
+                <TouchableOpacity
+                  onPress={() => {
+                    setModalVisible(!modalVisible),
+                    navigation.navigate('AppNavigator')
+                  }}
+                  style={styles.button}>
+                  <Text style={styles.textStyle}>Allow</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => setModalVisible(!modalVisible)}
+                  style={styles.button}>
+                  <Text style={styles.textStyle}>Don't Allow</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Modal>
       </View>
     </SafeAreaView>
   );
