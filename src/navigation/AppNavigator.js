@@ -12,7 +12,8 @@ import {
   Help,
   TermsAndConditions,
   Feedback,
-  ContactUs
+  ContactUs,
+  ChatSetting
 } from "../screens";
 import { colors } from '../constants';
 import Images from '../utils/Images';
@@ -91,6 +92,7 @@ const SettingdStack = () => (
       headerShown: false,
     }}>
     <Stack.Screen name="SettingScreen" component={Setting} />
+    <Stack.Screen name="ChatSetting" component={ChatSetting} />
     <Stack.Screen name="Help" component={Help} />
     <Stack.Screen name="Privacvy" component={Privacvy} />
     <Stack.Screen name="TermsAndConditions" component={TermsAndConditions} />

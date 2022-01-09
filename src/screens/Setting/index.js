@@ -65,21 +65,36 @@ export default Setting = ({ navigation }) => {
             <Item
               text={'My Channels'}
               count={'2'}
+              // onPress={() => {
+              //   navigation.navigate('MyChannels');
+              // }}
             />
             <Item
               text={'My Followers'}
               count={'100'}
+              // onPress={() => {
+              //   navigation.navigate('MyFollowers');
+              // }}
             />
             <Item
               text={'Views'}
               count={'50'}
+              // onPress={() => {
+              //   navigation.navigate('Views');
+              // }}
             />
             <Item
               text={'My Groups'}
               count={'2'}
+              // onPress={() => {
+              //   navigation.navigate('MyGroups');
+              // }}
             />
             <Item
               text={'Chat Settings'}
+              onPress={() => {
+                navigation.navigate('ChatSetting');
+              }}
             />
             <Item
               text={'Privacvy'}

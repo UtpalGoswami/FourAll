@@ -17,4 +17,5 @@ export { default as Help } from './Help';
 export { default as TermsAndConditions } from './TermsAndConditions';
 export { default as Feedback } from './Feedback';
 export { default as ContactUs } from './ContactUs';
+export { default as ChatSetting } from './ChatSetting';
 
