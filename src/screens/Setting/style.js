@@ -12,16 +12,16 @@ const styles = StyleSheet.create({
     },
     scroll: {
         flex: 1,
-        marginBottom: 5,
+        marginBottom: 10,
     },
     topView: {
-        flex:0.35,
-        backgroundColor:'red'
+        flex:0.30,
     },
     middleView: {
-        flex:0.65,
+        flex:0.70,
         marginTop: 75,
         padding: 20,
+        marginBottom:10
     },
     item: {
         flexDirection:'row',
@@ -61,9 +61,9 @@ const styles = StyleSheet.create({
         width: 17,
     },
     bgTop: {
-        // height: '100%',
-        // width: '100%',
-        // justifyContent: 'flex-end',
+        height: '100%',
+        width: '100%',
+        justifyContent: 'flex-end',
         alignItems: 'center',
         resizeMode: 'cover', // or 'stretch'
     },

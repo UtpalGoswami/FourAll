@@ -12,4 +12,9 @@ export { default as CreateReel } from './CreateReel';
 export { default as Reels } from './Reels';
 export { default as OwnReel } from './OwnReel';
 export { default as Setting } from './Setting';
+export { default as Privacvy } from './Privacvy';
+export { default as Help } from './Help';
+export { default as TermsAndConditions } from './TermsAndConditions';
+export { default as Feedback } from './Feedback';
+export { default as ContactUs } from './ContactUs';
 

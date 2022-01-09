@@ -70,6 +70,10 @@
 	<string>Zocial.ttf</string>
 	<string>Fontisto.ttf</string>
 	</array>
-
+	<!-- For camera and video record -->
+	<key>NSCameraUsageDescription</key>
+	<string>4All needs access to your Camera.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>4All needs access to your Microphone.</string>
 </dict>
 </plist>

@@ -35,12 +35,10 @@ export default Setting = ({ navigation }) => {
     }
   }
 
-  const Item = ({ text, count }) => (
+  const Item = ({ text, count, onPress }) => (
     <TouchableOpacity
       style={styles.item}
-      onPress={() => {
-        console.log('..Press ' + text);
-      }}>
+      onPress={onPress}>
       <Text style={styles.title}>{text}</Text>
       {count ?
         <Text style={[styles.count, styles.title]}>({count})</Text>
@@ -51,19 +49,19 @@ export default Setting = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.safeView}>
       <View style={styles.container}>
-        <ScrollView style={styles.scroll}>
-          <View style={styles.topView}>
-            <ImageBackground source={Images.userBg} style={styles.bgTop}>
-              <View style={styles.userIconView}>
-                <ImageBackground source={Images.userImage} style={styles.userImage}>
-                  <View style={styles.cameraIconView}>
-                    <Image source={Images.cameraIcon} style={styles.cameraImage}></Image>
-                  </View>
-                </ImageBackground>
-              </View>
-            </ImageBackground>
-          </View>
-          <View style={styles.middleView}>
+        <View style={styles.topView}>
+          <ImageBackground source={Images.userBg} style={styles.bgTop}>
+            <View style={styles.userIconView}>
+              <ImageBackground source={Images.userImage} style={styles.userImage}>
+                <View style={styles.cameraIconView}>
+                  <Image source={Images.cameraIcon} style={styles.cameraImage}></Image>
+                </View>
+              </ImageBackground>
+            </View>
+          </ImageBackground>
+        </View>
+        <View style={styles.middleView}>
+          <ScrollView style={styles.scroll}>
             <Item
               text={'My Channels'}
               count={'2'}
@@ -85,21 +83,36 @@ export default Setting = ({ navigation }) => {
             />
             <Item
               text={'Privacvy'}
+              onPress={() => {
+                navigation.navigate('Privacvy');
+              }}
             />
             <Item
               text={'Terms and Conditions'}
+              onPress={() => {
+                navigation.navigate('TermsAndConditions');
+              }}
             />
             <Item
               text={'Help'}
+              onPress={() => {
+                navigation.navigate('Help');
+              }}
             />
             <Item
               text={'Feedback'}
+              onPress={() => {
+                navigation.navigate('Feedback');
+              }}
             />
             <Item
               text={'Contact us'}
+              onPress={() => {
+                navigation.navigate('ContactUs');
+              }}
             />
-          </View>
-        </ScrollView>
+          </ScrollView>
+        </View>
       </View>
     </SafeAreaView>
   );

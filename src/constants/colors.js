@@ -20,6 +20,7 @@ export default colors = {
     logoutBtm: '#f41313',
     modalBg: 'rgba(35,44,82,0.5)',
     lightGrey: '#d3d3d3',
+    lightGreyHeader: '#f6f6f6',
     gray: '#808080',
     green: 'rgba(27, 172, 14, 0.93)',
     submit: '#016ABC',
