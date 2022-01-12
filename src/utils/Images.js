@@ -31,6 +31,10 @@ const Images = {
     ownReelIcon: require('@Images/all/11.png'),
     settingIcon: require('@Images/all/12.png'),
 
+    cameraRotedIcon: require('@Images/all/13.png'),
+    closeIcon: require('@Images/all/14.png'),
+    createReelBg: require('@Images/all/15.png'),
+
     chatGroupIcon: require('@Images/group/group-chat-logo.jpeg'),
     followerIcon: require('@Images/all/28.png'),
 }

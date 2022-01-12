@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity, StyleSheet, Image, Text } from 'react-native';
 import { colors, fonts } from '../constants';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 /**
 * Renders a <Header /> component
@@ -10,17 +11,19 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 * @param  props.onPressNotification {object} - the onpress event of the notification
 */
 
-export default Header = ({ onPress, title, onPressSearch }) => {
+export default Header = ({ onPress, title, onPressSearch, onPressDots }) => {
 
     return (
         <View style={styles.container}>
-            <Ionicons
-                name="chevron-back"
-                color={colors.gray}
-                size={30}
-                onPress={onPress}
-                style={styles.iconView}
-            />
+            {onPress ?
+                <Ionicons
+                    name="chevron-back"
+                    color={colors.gray}
+                    size={30}
+                    onPress={onPress}
+                    style={styles.iconView}
+                />
+                : null}
             <View style={{ flex: onPressSearch ? 0.8 : 0.9 }}>
                 <Text style={styles.text}>{title}</Text>
             </View>
@@ -33,13 +36,22 @@ export default Header = ({ onPress, title, onPressSearch }) => {
                     style={styles.iconView}
                 />
                 : null}
+            {onPressDots ?
+                <Entypo
+                    name="dots-three-vertical"
+                    color={colors.gray}
+                    size={25}
+                    onPress={onPressDots}
+                    style={styles.iconView}
+                />
+                : null}
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        padding: 10,
+        padding: 15,
         flexDirection: 'row',
         backgroundColor: colors.lightGreyHeader,
         justifyContent: 'center',
