@@ -10,7 +10,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 * @param  props.onPressNotification {object} - the onpress event of the notification
 */
 
-export default Header = ({ onPress, title }) => {
+export default Header = ({ onPress, title, onPressSearch }) => {
 
     return (
         <View style={styles.container}>
@@ -21,9 +21,18 @@ export default Header = ({ onPress, title }) => {
                 onPress={onPress}
                 style={styles.iconView}
             />
-            <View style={styles.textView}>
+            <View style={{ flex: onPressSearch ? 0.8 : 0.9 }}>
                 <Text style={styles.text}>{title}</Text>
             </View>
+            {onPressSearch ?
+                <Ionicons
+                    name="search"
+                    color={colors.gray}
+                    size={25}
+                    onPress={onPressSearch}
+                    style={styles.iconView}
+                />
+                : null}
         </View>
     )
 }
@@ -40,7 +49,7 @@ const styles = StyleSheet.create({
         flex: 0.1
     },
     textView: {
-        flex: 0.9,
+        flex: 0.8,
     },
     text: {
         fontSize: 16,

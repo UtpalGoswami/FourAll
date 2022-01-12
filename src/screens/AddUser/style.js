@@ -10,10 +10,10 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     topView: {
-        flex: 0.45,
+        flex: 0.5,
     },
     middleView: {
-        flex: 0.35,
+        flex: 0.3,
         marginTop: 75,
         padding: 20
     },

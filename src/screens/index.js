@@ -18,4 +18,8 @@ export { default as TermsAndConditions } from './TermsAndConditions';
 export { default as Feedback } from './Feedback';
 export { default as ContactUs } from './ContactUs';
 export { default as ChatSetting } from './ChatSetting';
+export { default as MyChannels } from './MyChannels';
+export { default as MyFollowers } from './MyFollowers';
+export { default as Views } from './Views';
+export { default as MyGroups } from './MyGroups';
 

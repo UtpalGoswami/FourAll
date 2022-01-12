@@ -64,31 +64,31 @@ export default Setting = ({ navigation }) => {
           <ScrollView style={styles.scroll}>
             <Item
               text={'My Channels'}
-              count={'2'}
-              // onPress={() => {
-              //   navigation.navigate('MyChannels');
-              // }}
+              count={'3'}
+              onPress={() => {
+                navigation.navigate('MyChannels');
+              }}
             />
             <Item
               text={'My Followers'}
-              count={'100'}
-              // onPress={() => {
-              //   navigation.navigate('MyFollowers');
-              // }}
+              count={'9'}
+              onPress={() => {
+                navigation.navigate('MyFollowers');
+              }}
             />
             <Item
               text={'Views'}
-              count={'50'}
-              // onPress={() => {
-              //   navigation.navigate('Views');
-              // }}
+              count={'9'}
+              onPress={() => {
+                navigation.navigate('Views');
+              }}
             />
             <Item
               text={'My Groups'}
-              count={'2'}
-              // onPress={() => {
-              //   navigation.navigate('MyGroups');
-              // }}
+              count={'3'}
+              onPress={() => {
+                navigation.navigate('MyGroups');
+              }}
             />
             <Item
               text={'Chat Settings'}

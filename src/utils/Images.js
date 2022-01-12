@@ -30,5 +30,8 @@ const Images = {
     createReelIcon: require('@Images/all/10.png'),
     ownReelIcon: require('@Images/all/11.png'),
     settingIcon: require('@Images/all/12.png'),
+
+    chatGroupIcon: require('@Images/group/group-chat-logo.jpeg'),
+    followerIcon: require('@Images/all/28.png'),
 }
 export default Images;
