@@ -1,12 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { View, Text, SafeAreaView, ImageBackground, Image, Modal } from 'react-native';
+import { View, Text, SafeAreaView, ImageBackground, Image, Modal, TouchableOpacity } from 'react-native';
 import { colors, I18n } from '../../constants';
 import { UselessTextInput } from '../../components';
 // Images
 import Images from '../../utils/Images';
 // Style
 import styles from './style';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 /**
  * @class AddUser
@@ -60,7 +59,9 @@ export default AddUser = ({ navigation }) => {
             />
           </View>
           <TouchableOpacity
-            onPress={() => setModalVisible(true)}>
+            onPress={() => {
+              setModalVisible(true)
+            }}>
             <View style={styles.btnView}>
               <Text style={styles.loginBtn}>SUBMIT</Text>
             </View>
@@ -76,7 +77,7 @@ export default AddUser = ({ navigation }) => {
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
-            setModalVisible(!modalVisible);
+            setModalVisible(false);
           }}>
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
@@ -87,15 +88,15 @@ export default AddUser = ({ navigation }) => {
               <View style={styles.buttonView}>
                 <TouchableOpacity
                   onPress={() => {
-                    setModalVisible(!modalVisible),
-                    navigation.navigate('AppNavigator')
+                    setModalVisible(false);
+                    navigation.navigate('AppNavigator');
                   }}
                   style={styles.button}>
                   <Text style={styles.textStyle}>Allow</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  onPress={() => setModalVisible(!modalVisible)}
-                  style={styles.button}>
+                  onPress={() => { setModalVisible(false) }}
+                  style={[styles.button, { marginStart: 10 }]}>
                   <Text style={styles.textStyle}>Don't Allow</Text>
                 </TouchableOpacity>
               </View>

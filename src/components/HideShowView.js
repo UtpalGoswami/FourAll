@@ -36,7 +36,7 @@ export default HideShowView = ({ title, desc }) => {
             </TouchableOpacity>
             {show ?
                 <View style={styles.descView}>
-                    <Text>{desc}</Text>
+                    <Text style={styles.descText}>{desc}</Text>
                 </View>
                 : null}
         </View>
@@ -65,6 +65,9 @@ const styles = StyleSheet.create({
     descView: {
         marginBottom: 5,
         padding: 5
+    },
+    descText: {
+        color: colors.gray,
     },
     iconView: {
         flex: 0.08

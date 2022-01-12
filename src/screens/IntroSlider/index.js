@@ -15,7 +15,7 @@ import styles from './style';
 //import AppIntroSlider to use it
 import AppIntroSlider from 'react-native-app-intro-slider';
 //import AppIntroSlider to use it
-import Icon from 'react-native-vector-icons/Ionicons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Images from '../../utils/Images';
 
 const slides = [
@@ -57,10 +57,10 @@ const IntroSlider = ({ navigation }) => {
     const RenderNextButton = () => {
       return (
         <View style={styles.buttonCircle}>
-          <Icon
-            name="arrow-forward-circle-outline"
+          <MaterialIcons
+            name="arrow-forward"
             color="rgba(255, 255, 255, .9)"
-            size={24}
+            size={25}
             style={{backgroundColor: 'transparent'}}
           />
         </View>
@@ -70,10 +70,10 @@ const IntroSlider = ({ navigation }) => {
     const RenderDoneButton = () => {
       return (
         <View style={styles.buttonCircle}>
-          <Icon
-            name="checkmark-circle-outline"
+          <MaterialIcons
+            name="done"
             color="rgba(255, 255, 255, .9)"
-            size={24}
+            size={25}
             style={{backgroundColor: 'transparent'}}
           />
         </View>

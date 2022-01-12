@@ -17,7 +17,7 @@ export default Header = ({ onPress, title, onPressSearch, onPressDots }) => {
         <View style={styles.container}>
             {onPress ?
                 <Ionicons
-                    name="chevron-back"
+                    name="arrow-back"
                     color={colors.gray}
                     size={30}
                     onPress={onPress}
@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 16,
         fontWeight: 'bold',
+        color:colors.black,
     }
 })
 

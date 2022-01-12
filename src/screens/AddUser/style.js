@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
         padding: 10,
         elevation: 2,
         backgroundColor: colors.authBtn,
-        width: 135
+        width: 130
     },
     textStyle: {
         color: colors.black,
