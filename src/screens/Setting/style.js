@@ -61,11 +61,9 @@ const styles = StyleSheet.create({
         width: 17,
     },
     bgTop: {
-        height: '100%',
-        width: '100%',
+        flex:1,
         justifyContent: 'flex-end',
         alignItems: 'center',
-        resizeMode: 'cover', // or 'stretch'
     },
     userImage: {
         height: '100%',

@@ -64,3 +64,15 @@ android/app/src/main/res/
 android/app/debug/
 android/app/release/
 android/app/src/main/assets/index.android.bundle
+android/app/src/main/assets/index.android.bundle
+android/app/src/main/res/drawable-hdpi/launch_screen.jpg
+android/app/src/main/res/drawable-mdpi/assets_images_background_background.png
+android/app/src/main/res/drawable-mdpi/assets_images_logo_logo.png
+android/app/src/main/res/drawable-mdpi/launch_screen.jpg
+android/app/src/main/res/drawable-mdpi/node_modules_reactnativecountrypickermodal_lib_assets_images_close.png
+android/app/src/main/res/drawable-mdpi/node_modules_reactnativecountrypickermodal_lib_assets_images_closeios.png
+android/app/src/main/res/drawable-xhdpi/assets_images_logo_logo.png
+android/app/src/main/res/drawable-xhdpi/launch_screen.jpg
+android/app/src/main/res/drawable-xxhdpi/assets_images_logo_logo.png
+android/app/src/main/res/drawable-xxhdpi/launch_screen.jpg
+android/app/src/main/res/drawable-xxxhdpi/launch_screen.jpg

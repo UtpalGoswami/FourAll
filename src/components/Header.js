@@ -12,24 +12,14 @@ import Entypo from 'react-native-vector-icons/Entypo';
 */
 
 export default Header = ({ onPress, title, onPressSearch, onPressDots }) => {
-
     return (
         <View style={styles.container}>
-            {onPress ?
-                <Ionicons
-                    name="arrow-back"
-                    color={colors.gray}
-                    size={30}
-                    onPress={onPress}
-                    style={styles.iconView}
-                />
-                : null}
             <View style={{ flex: onPressSearch ? 0.8 : 0.9 }}>
                 <Text style={styles.text}>{title}</Text>
             </View>
             {onPressSearch ?
                 <Ionicons
-                    name="search"
+                    name="search-circle"
                     color={colors.gray}
                     size={25}
                     onPress={onPressSearch}

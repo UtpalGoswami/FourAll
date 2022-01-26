@@ -48,9 +48,11 @@ export default Setting = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.safeView}>
-      <View style={styles.container}>
         <View style={styles.topView}>
-          <ImageBackground source={Images.userBg} style={styles.bgTop}>
+          <ImageBackground 
+          source={Images.userBg} 
+          style={styles.bgTop}
+          resizeMode={'stretch'}>
             <View style={styles.userIconView}>
               <ImageBackground source={Images.userImage} style={styles.userImage}>
                 <View style={styles.cameraIconView}>
@@ -128,7 +130,6 @@ export default Setting = ({ navigation }) => {
             />
           </ScrollView>
         </View>
-      </View>
     </SafeAreaView>
   );
 }
