@@ -6,7 +6,7 @@ import App from './navigation';
 
 /**
  * @class Index
- * @description  Tattlebox init function
+ * @description  FourAll init function
  */
 export default function index() {
 
