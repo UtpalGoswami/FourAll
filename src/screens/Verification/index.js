@@ -1,19 +1,24 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { View, Text, SafeAreaView, ImageBackground, Image } from 'react-native';
-import { colors, I18n } from '../../constants';
-import { UselessTextInput } from '../../components';
+import React, {useEffect, useState, useRef} from 'react';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  ImageBackground,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
+import {colors, I18n} from '../../constants';
+import {UselessTextInput} from '../../components';
 // Images
 import Images from '../../utils/Images';
 // Style
 import styles from './style';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 /**
  * @class Verification
  * @param  {Object} navigation - Use for navigation
  */
-export default Verification = ({ navigation }) => {
-
+export default Verification = ({navigation}) => {
   /**
    * Set user firstname value.
    * @description spinner {string} - Spinner for wait Verification user request.
@@ -35,13 +40,13 @@ export default Verification = ({ navigation }) => {
     console.log('Verification');
   }, []);
 
-  const validateInput = (input) => {
+  const validateInput = input => {
     if (/[^0-9]/.test(input)) {
       return true;
     } else {
       return false;
     }
-  }
+  };
 
   return (
     <SafeAreaView style={styles.safeView}>
@@ -57,14 +62,14 @@ export default Verification = ({ navigation }) => {
             <View style={styles.textInputView}>
               <UselessTextInput
                 inputRef={inputOne}
-                onChangeText={(text) => {
+                onChangeText={text => {
                   setOtpText1(text);
                   if (text) {
                     // inputTwo.current.focus();
                   }
                 }}
                 value={otpText1}
-                keyboardType='numeric'
+                keyboardType="numeric"
                 style={styles.textInput}
                 textAlign={'center'}
                 maxLength={1}
@@ -73,14 +78,14 @@ export default Verification = ({ navigation }) => {
             <View style={styles.textInputView}>
               <UselessTextInput
                 inputRef={inputTwo}
-                onChangeText={(text) => {
+                onChangeText={text => {
                   setOtpText2(text);
                   if (text) {
                     // inputThree.current.focus();
                   }
                 }}
                 value={otpText2}
-                keyboardType='numeric'
+                keyboardType="numeric"
                 style={styles.textInput}
                 textAlign={'center'}
                 maxLength={1}
@@ -89,14 +94,14 @@ export default Verification = ({ navigation }) => {
             <View style={styles.textInputView}>
               <UselessTextInput
                 inputRef={inputThree}
-                onChangeText={(text) => {
+                onChangeText={text => {
                   setOtpText3(text);
                   if (text) {
                     // inputFour.current.focus();
                   }
                 }}
                 value={otpText3}
-                keyboardType='numeric'
+                keyboardType="numeric"
                 style={styles.textInput}
                 textAlign={'center'}
                 maxLength={1}
@@ -107,7 +112,7 @@ export default Verification = ({ navigation }) => {
                 inputRef={inputFour}
                 onChangeText={text => setOtpText4(text)}
                 value={otpText4}
-                keyboardType='numeric'
+                keyboardType="numeric"
                 style={styles.textInput}
                 textAlign={'center'}
                 maxLength={1}
@@ -128,9 +133,8 @@ export default Verification = ({ navigation }) => {
             <Text style={styles.forgotText}>-</Text>
             <Text style={styles.forgotText}>{timer} sec</Text>
           </View>
-
         </View>
       </ImageBackground>
     </SafeAreaView>
   );
-}
+};

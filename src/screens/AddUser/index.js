@@ -1,7 +1,20 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { View, Text, SafeAreaView, ImageBackground, Image, Modal, TouchableOpacity } from 'react-native';
-import { colors, I18n } from '../../constants';
-import { UselessTextInput } from '../../components';
+import React, {useEffect, useState, useCallback} from 'react';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  ImageBackground,
+  Image,
+  Modal,
+  TouchableOpacity,
+  PermissionsAndroid,
+  Platform,
+  Alert,
+} from 'react-native';
+import {colors, I18n} from '../../constants';
+import {UselessTextInput} from '../../components';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+
 // Images
 import Images from '../../utils/Images';
 // Style
@@ -11,8 +24,7 @@ import styles from './style';
  * @class AddUser
  * @param  {Object} navigation - Use for navigation
  */
-export default AddUser = ({ navigation }) => {
-
+export default AddUser = ({navigation}) => {
   /**
    * Set user firstname value.
    * @description spinner {string} - Spinner for wait AddUser user request.
@@ -21,30 +33,161 @@ export default AddUser = ({ navigation }) => {
   const [spinner, setSpinner] = useState(false);
   const [userName, setUserName] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
+  const options = {
+    saveToPhotos: true,
+    mediaType: 'photo',
+    includeBase64: false,
+    includeExtra: true,
+  };
+
+  const [filePath, setFilePath] = useState();
+
+  const requestCameraPermission = async () => {
+    if (Platform.OS === 'android') {
+      try {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.CAMERA,
+          {
+            title: 'Camera Permission',
+            message: 'App needs camera permission',
+          },
+        );
+        // If CAMERA Permission is granted
+        return granted === PermissionsAndroid.RESULTS.GRANTED;
+      } catch (err) {
+        console.warn(err);
+        return false;
+      }
+    } else {
+      return true;
+    }
+  };
+
+  const requestExternalWritePermission = async () => {
+    if (Platform.OS === 'android') {
+      try {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+          {
+            title: 'External Storage Write Permission',
+            message: 'App needs write permission',
+          },
+        );
+        // If WRITE_EXTERNAL_STORAGE Permission is granted
+        return granted === PermissionsAndroid.RESULTS.GRANTED;
+      } catch (err) {
+        console.warn(err);
+        alert('Write permission err', err);
+      }
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  const captureImage = async type => {
+    let options = {
+      mediaType: type,
+      maxWidth: 300,
+      maxHeight: 550,
+      quality: 1,
+      videoQuality: 'low',
+      durationLimit: 30, //Video max duration in seconds
+      saveToPhotos: true,
+    };
+    let isCameraPermitted = await requestCameraPermission();
+    let isStoragePermitted = await requestExternalWritePermission();
+    if (isCameraPermitted && isStoragePermitted) {
+      launchCamera(options, response => {
+        if (response.didCancel) {
+          Alert.alert('User cancelled camera picker');
+          return;
+        } else if (response.errorCode == 'camera_unavailable') {
+          Alert.alert('Camera not available on device');
+          return;
+        } else if (response.errorCode == 'permission') {
+          Alert.alert('Permission not satisfied');
+          return;
+        } else if (response.errorCode == 'others') {
+          Alert.alert(response.errorMessage);
+          return;
+        }
+        setFilePath(response?.assets[0]?.uri);
+      });
+    }
+  };
+
+  const chooseFile = type => {
+    let options = {
+      mediaType: type,
+      maxWidth: 300,
+      maxHeight: 550,
+      quality: 1,
+    };
+    launchImageLibrary(options, response => {
+      if (response.didCancel) {
+        Alert.alert('User cancelled camera picker');
+        return;
+      } else if (response.errorCode == 'camera_unavailable') {
+        Alert.alert('Camera not available on device');
+        return;
+      } else if (response.errorCode == 'permission') {
+        Alert.alert('Permission not satisfied');
+        return;
+      } else if (response.errorCode == 'others') {
+        Alert.alert(response.errorMessage);
+        return;
+      }
+      setFilePath(response?.assets[0]?.uri);
+    });
+  };
 
   useEffect(() => {
     console.log('AddUser');
   }, []);
 
-  const validateInput = (input) => {
+  const validateInput = input => {
     if (/[^0-9]/.test(input)) {
       return true;
     } else {
       return false;
     }
-  }
+  };
 
   return (
     <SafeAreaView style={styles.safeView}>
-      <View style={[styles.container, { opacity: modalVisible ? 0.3 : null }]}>
+      <View style={[styles.container, {opacity: modalVisible ? 0.3 : null}]}>
         <View style={styles.topView}>
           <ImageBackground source={Images.userBg} style={styles.bgTop}>
             <View style={styles.userIconView}>
-              <ImageBackground source={Images.userImage} style={styles.userImage}>
-                <View style={styles.cameraIconView}>
-                  <Image source={Images.cameraIcon} style={styles.cameraImage}></Image>
-                </View>
-              </ImageBackground>
+              {filePath ? (
+                <ImageBackground
+                  imageStyle={styles.userImageStyle}
+                  source={{uri: filePath}}
+                  style={styles.userImage}>
+                  <View style={styles.cameraIconView}>
+                    <TouchableOpacity onPress={() => captureImage('photo')}>
+                      <Image
+                        source={Images.cameraIcon}
+                        style={styles.cameraImage}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                </ImageBackground>
+              ) : (
+                <ImageBackground
+                  source={Images.userImage}
+                  style={styles.userImage}>
+                  <View style={styles.cameraIconView}>
+                    <TouchableOpacity onPress={() => captureImage('photo')}>
+                      <Image
+                        source={Images.cameraIcon}
+                        style={styles.cameraImage}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                </ImageBackground>
+              )}
             </View>
           </ImageBackground>
         </View>
@@ -60,7 +203,7 @@ export default AddUser = ({ navigation }) => {
           </View>
           <TouchableOpacity
             onPress={() => {
-              setModalVisible(true)
+              setModalVisible(true);
             }}>
             <View style={styles.btnView}>
               <Text style={styles.loginBtn}>SUBMIT</Text>
@@ -68,8 +211,7 @@ export default AddUser = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <View style={styles.bottomView}>
-          <ImageBackground source={Images.bgBottom} style={styles.bgBottom}>
-          </ImageBackground>
+          <ImageBackground source={Images.bgBottom} style={styles.bgBottom} />
         </View>
 
         <Modal
@@ -81,10 +223,12 @@ export default AddUser = ({ navigation }) => {
           }}>
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-              <Text style={styles.modalTitleText}>"4All" would like to
-                access your contact?</Text>
-              <Text style={styles.modalDescText}>This lets you see which of your friends
-                are on the app</Text>
+              <Text style={styles.modalTitleText}>
+                "4All" would like to access your contact?
+              </Text>
+              <Text style={styles.modalDescText}>
+                This lets you see which of your friends are on the app
+              </Text>
               <View style={styles.buttonView}>
                 <TouchableOpacity
                   onPress={() => {
@@ -95,8 +239,10 @@ export default AddUser = ({ navigation }) => {
                   <Text style={styles.textStyle}>Allow</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  onPress={() => { setModalVisible(false) }}
-                  style={[styles.button, { marginStart: 10 }]}>
+                  onPress={() => {
+                    setModalVisible(false);
+                  }}
+                  style={[styles.button, {marginStart: 10}]}>
                   <Text style={styles.textStyle}>Don't Allow</Text>
                 </TouchableOpacity>
               </View>
@@ -106,4 +252,4 @@ export default AddUser = ({ navigation }) => {
       </View>
     </SafeAreaView>
   );
-}
+};

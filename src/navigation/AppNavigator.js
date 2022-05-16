@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Image, StyleSheet, View } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from "@react-navigation/stack";
+import {Image, StyleSheet, View} from 'react-native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 import {
   Setting,
   Chat,
   CreateReel,
-  Reels,
+  Reel,
   OwnReel,
   Privacvy,
   Help,
@@ -18,8 +18,8 @@ import {
   MyFollowers,
   Views,
   MyGroups,
-} from "../screens";
-import { colors } from '../constants';
+} from '../screens';
+import {colors} from '../constants';
 import Images from '../utils/Images';
 
 const Tab = createBottomTabNavigator();
@@ -27,19 +27,23 @@ const Stack = createStackNavigator();
 
 export default AppNavigator = () => (
   <Tab.Navigator
-    initialRouteName="CreateReel"
+    initialRouteName="Reel"
     screenOptions={{
       tabBarActiveTintColor: colors.submit,
       headerShown: false,
     }}>
     <Tab.Screen
-      name="Reel"
-      component={Reels}
+      name="Reels"
+      component={Reel}
       options={{
         tabBarColor: colors.blue,
         tabBarLabel: '',
-        tabBarIcon: ({ color, size }) => (
-          <Image source={Images.reelsIcon} style={{ tintColor: color }} size={size} />
+        tabBarIcon: ({color, size}) => (
+          <Image
+            source={Images.reelsIcon}
+            style={{tintColor: color}}
+            size={size}
+          />
         ),
       }}
     />
@@ -48,8 +52,12 @@ export default AppNavigator = () => (
       component={Chat}
       options={{
         tabBarLabel: '',
-        tabBarIcon: ({ color, size }) => (
-          <Image source={Images.chatIcon} style={{ tintColor: color }} size={size} />
+        tabBarIcon: ({color, size}) => (
+          <Image
+            source={Images.chatIcon}
+            style={{tintColor: color}}
+            size={size}
+          />
         ),
       }}
     />
@@ -58,9 +66,13 @@ export default AppNavigator = () => (
       component={CreateReel}
       options={{
         tabBarLabel: '',
-        tabBarIcon: ({ color, size }) => (
-          <View style={[styles.centerIcon, { borderColor: color }]}>
-            <Image source={Images.createReelIcon} style={{ transform: [{ rotate: '-45deg' }], tintColor: color }} size={size} />
+        tabBarIcon: ({color, size}) => (
+          <View style={[styles.centerIcon, {borderColor: color}]}>
+            <Image
+              source={Images.createReelIcon}
+              style={{transform: [{rotate: '-45deg'}], tintColor: color}}
+              size={size}
+            />
           </View>
         ),
       }}
@@ -70,8 +82,12 @@ export default AppNavigator = () => (
       component={OwnReel}
       options={{
         tabBarLabel: '',
-        tabBarIcon: ({ color, size }) => (
-          <Image source={Images.ownReelIcon} style={{ tintColor: color }} size={size} />
+        tabBarIcon: ({color, size}) => (
+          <Image
+            source={Images.ownReelIcon}
+            style={{tintColor: color}}
+            size={size}
+          />
         ),
       }}
     />
@@ -80,13 +96,17 @@ export default AppNavigator = () => (
       component={SettingdStack}
       options={{
         tabBarLabel: '',
-        tabBarIcon: ({ color, size }) => (
-          <Image source={Images.settingIcon} style={{ tintColor: color }} size={size} />
+        tabBarIcon: ({color, size}) => (
+          <Image
+            source={Images.settingIcon}
+            style={{tintColor: color}}
+            size={size}
+          />
         ),
       }}
     />
   </Tab.Navigator>
-)
+);
 
 const SettingdStack = () => (
   <Stack.Navigator
@@ -118,8 +138,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     paddingTop: 15,
     alignItems: 'center',
-    transform: [{ rotate: '45deg' }],
+    transform: [{rotate: '45deg'}],
     position: 'absolute',
-    bottom: 10
+    bottom: 10,
   },
 });

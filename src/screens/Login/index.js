@@ -1,19 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, SafeAreaView, ImageBackground, Image } from 'react-native';
-import { colors, I18n } from '../../constants';
-import { UselessTextInput } from '../../components';
+import React, {useEffect, useState} from 'react';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  ImageBackground,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
+import {colors, I18n} from '../../constants';
+import {UselessTextInput} from '../../components';
 // Images
 import Images from '../../utils/Images';
 // Style
 import styles from './style';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 /**
  * @class Login
  * @param  {Object} navigation - Use for navigation
  */
-export default Login = ({ navigation }) => {
-
+export default Login = ({navigation}) => {
   /**
    * Set user firstname value.
    * @description spinner {string} - Spinner for wait login user request.
@@ -59,9 +64,8 @@ export default Login = ({ navigation }) => {
               <Text style={styles.forgotText}>Forgot Password?</Text>
             </TouchableOpacity>
           </View>
-
         </View>
       </ImageBackground>
     </SafeAreaView>
   );
-}
+};
