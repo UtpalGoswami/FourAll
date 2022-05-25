@@ -8,7 +8,7 @@ import {
   CreateReel,
   Reel,
   OwnReel,
-  Privacvy,
+  Privacy,
   Help,
   TermsAndConditions,
   Feedback,
@@ -18,6 +18,7 @@ import {
   MyFollowers,
   Views,
   MyGroups,
+  UserProfile,
 } from '../screens';
 import {colors} from '../constants';
 import Images from '../utils/Images';
@@ -29,21 +30,24 @@ export default AppNavigator = () => (
   <Tab.Navigator
     initialRouteName="Reel"
     screenOptions={{
-      tabBarActiveTintColor: colors.submit,
+      tabBarActiveTintColor: colors.white,
       headerShown: false,
+      tabBarStyle: {height: 55},
     }}>
     <Tab.Screen
       name="Reels"
-      component={Reel}
+      component={ReelStack}
       options={{
         tabBarColor: colors.blue,
         tabBarLabel: '',
-        tabBarIcon: ({color, size}) => (
-          <Image
-            source={Images.reelsIcon}
-            style={{tintColor: color}}
-            size={size}
-          />
+        tabBarIcon: ({color, size, focused}) => (
+          <View style={focused ? styles.tabIconView : null}>
+            <Image
+              source={Images.reelsIcon}
+              style={{tintColor: color}}
+              size={size}
+            />
+          </View>
         ),
       }}
     />
@@ -52,12 +56,14 @@ export default AppNavigator = () => (
       component={Chat}
       options={{
         tabBarLabel: '',
-        tabBarIcon: ({color, size}) => (
-          <Image
-            source={Images.chatIcon}
-            style={{tintColor: color}}
-            size={size}
-          />
+        tabBarIcon: ({color, size, focused}) => (
+          <View style={focused ? styles.tabIconView : null}>
+            <Image
+              source={Images.chatIcon}
+              style={{tintColor: color}}
+              size={size}
+            />
+          </View>
         ),
       }}
     />
@@ -66,8 +72,15 @@ export default AppNavigator = () => (
       component={CreateReel}
       options={{
         tabBarLabel: '',
-        tabBarIcon: ({color, size}) => (
-          <View style={[styles.centerIcon, {borderColor: color}]}>
+        tabBarIcon: ({color, size, focused}) => (
+          <View
+            style={[
+              styles.centerIcon,
+              {
+                borderColor: colors.mint,
+                backgroundColor: focused ? colors.mint : colors.white,
+              },
+            ]}>
             <Image
               source={Images.createReelIcon}
               style={{transform: [{rotate: '-45deg'}], tintColor: color}}
@@ -82,12 +95,14 @@ export default AppNavigator = () => (
       component={OwnReel}
       options={{
         tabBarLabel: '',
-        tabBarIcon: ({color, size}) => (
-          <Image
-            source={Images.ownReelIcon}
-            style={{tintColor: color}}
-            size={size}
-          />
+        tabBarIcon: ({color, size, focused}) => (
+          <View style={focused ? styles.tabIconView : null}>
+            <Image
+              source={Images.ownReelIcon}
+              style={{tintColor: color}}
+              size={size}
+            />
+          </View>
         ),
       }}
     />
@@ -96,18 +111,31 @@ export default AppNavigator = () => (
       component={SettingdStack}
       options={{
         tabBarLabel: '',
-        tabBarIcon: ({color, size}) => (
-          <Image
-            source={Images.settingIcon}
-            style={{tintColor: color}}
-            size={size}
-          />
+        tabBarIcon: ({color, size, focused}) => (
+          <View style={focused ? styles.tabIconView : null}>
+            <Image
+              source={Images.settingIcon}
+              style={{tintColor: color}}
+              size={size}
+            />
+          </View>
         ),
       }}
     />
   </Tab.Navigator>
 );
 
+const ReelStack = () => (
+  <Stack.Navigator
+    initialRouteName="Reel"
+    screenOptions={{
+      tabBarActiveTintColor: colors.submit,
+      headerShown: false,
+    }}>
+    <Stack.Screen name="Reel" component={Reel} />
+    <Stack.Screen name="UserProfile" component={UserProfile} />
+  </Stack.Navigator>
+);
 const SettingdStack = () => (
   <Stack.Navigator
     initialRouteName="SettingScreen"
@@ -122,7 +150,7 @@ const SettingdStack = () => (
     <Stack.Screen name="Views" component={Views} />
     <Stack.Screen name="MyGroups" component={MyGroups} />
     <Stack.Screen name="Help" component={Help} />
-    <Stack.Screen name="Privacvy" component={Privacvy} />
+    <Stack.Screen name="Privacy" component={Privacy} />
     <Stack.Screen name="TermsAndConditions" component={TermsAndConditions} />
     <Stack.Screen name="Feedback" component={Feedback} />
     <Stack.Screen name="ContactUs" component={ContactUs} />
@@ -131,15 +159,19 @@ const SettingdStack = () => (
 
 const styles = StyleSheet.create({
   centerIcon: {
-    height: 50,
-    width: 50,
+    height: 45,
+    width: 45,
     borderRadius: 5,
     borderWidth: 1.2,
-    backgroundColor: colors.white,
-    paddingTop: 15,
+    paddingTop: 12,
     alignItems: 'center',
     transform: [{rotate: '45deg'}],
     position: 'absolute',
-    bottom: 10,
+    bottom: 19,
+  },
+  tabIconView: {
+    backgroundColor: colors.hanBlue,
+    padding: 8,
+    borderRadius: 50,
   },
 });

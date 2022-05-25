@@ -1,20 +1,17 @@
 //import liraries
 import React, {useRef, useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  SafeAreaView,
-  StatusBar,
-  Image,
-  Dimensions,
-  FlatList,
-} from 'react-native';
+import {View, Text, Dimensions, TouchableOpacity, Image} from 'react-native';
 import Video from 'react-native-video';
-import Icon from 'react-native-vector-icons/EvilIcons';
+import Entypo from 'react-native-vector-icons/Entypo';
+import Ionic from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import Feather from 'react-native-vector-icons/Feather';
 import {SwiperFlatList} from 'react-native-swiper-flatlist';
+// Style
+import styles from './style';
 
-const {height, width} = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
+
 const videoList = [
   {
     description:
@@ -26,6 +23,8 @@ const videoList = [
     thumb:
       'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg',
     title: 'Big Buck Bunny',
+    likes: '245k',
+    isLike: false,
   },
   {
     description: 'The first Blender Open Movie from 2006',
@@ -36,6 +35,8 @@ const videoList = [
     thumb:
       'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ElephantsDream.jpg',
     title: 'Elephant Dream',
+    likes: '245k',
+    isLike: false,
   },
   {
     description:
@@ -47,6 +48,8 @@ const videoList = [
     thumb:
       'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerBlazes.jpg',
     title: 'For Bigger Blazes',
+    likes: '245k',
+    isLike: false,
   },
   {
     description:
@@ -58,6 +61,8 @@ const videoList = [
     thumb:
       'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerEscapes.jpg',
     title: 'For Bigger Escape',
+    likes: '245k',
+    isLike: false,
   },
   {
     description:
@@ -69,6 +74,8 @@ const videoList = [
     thumb:
       'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerFun.jpg',
     title: 'For Bigger Fun',
+    likes: '245k',
+    isLike: false,
   },
   {
     description:
@@ -80,6 +87,8 @@ const videoList = [
     thumb:
       'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerJoyrides.jpg',
     title: 'For Bigger Joyrides',
+    likes: '245k',
+    isLike: false,
   },
   {
     description:
@@ -91,6 +100,8 @@ const videoList = [
     thumb:
       'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerMeltdowns.jpg',
     title: 'For Bigger Meltdowns',
+    likes: '245k',
+    isLike: false,
   },
   {
     description:
@@ -102,6 +113,8 @@ const videoList = [
     thumb:
       'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/Sintel.jpg',
     title: 'Sintel',
+    likes: '245k',
+    isLike: false,
   },
   {
     description:
@@ -113,6 +126,8 @@ const videoList = [
     thumb:
       'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/SubaruOutbackOnStreetAndDirt.jpg',
     title: 'Subaru Outback On Street And Dirt',
+    likes: '245k',
+    isLike: false,
   },
   {
     description:
@@ -124,6 +139,8 @@ const videoList = [
     thumb:
       'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/TearsOfSteel.jpg',
     title: 'Tears of Steel',
+    likes: '245k',
+    isLike: false,
   },
   {
     description:
@@ -135,6 +152,8 @@ const videoList = [
     thumb:
       'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/VolkswagenGTIReview.jpg',
     title: 'Volkswagen GTI Review',
+    likes: '245k',
+    isLike: false,
   },
   {
     description:
@@ -146,6 +165,8 @@ const videoList = [
     thumb:
       'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/WeAreGoingOnBullrun.jpg',
     title: 'We Are Going On Bullrun',
+    likes: '245k',
+    isLike: false,
   },
   {
     description:
@@ -157,6 +178,8 @@ const videoList = [
     thumb:
       'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/WhatCarCanYouGetForAGrand.jpg',
     title: 'What care can you get for a grand?',
+    likes: '245k',
+    isLike: false,
   },
 ];
 
@@ -164,6 +187,8 @@ const videoList = [
 const Reel = ({navigation}) => {
   const videoRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [mute, setMute] = useState(false);
+  const [like, setLike] = useState(false);
 
   const onBuffer = e => {
     console.log('onBuffer : ', e);
@@ -206,84 +231,128 @@ const Reel = ({navigation}) => {
             value: 512,
           }}
         />
+        <Ionic
+          name="volume-mute"
+          style={{
+            fontSize: mute ? 20 : 0,
+            color: 'white',
+            position: 'absolute',
+            backgroundColor: 'rgba(52,52,52,0.6)',
+            borderRadius: 100,
+            padding: mute ? 20 : 0,
+          }}
+        />
+        <View
+          style={{
+            position: 'absolute',
+            width: width,
+            zIndex: 1,
+            bottom: 0, //edited
+            padding: 10,
+            marginBottom: 80,
+          }}>
+          <View>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('UserProfile', {userDetails: item});
+              }}
+              style={{width: 150}}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}>
+                <View
+                  style={{
+                    width: 32,
+                    height: 32,
+                    borderRadius: 100,
+                    backgroundColor: 'white',
+                    margin: 10,
+                  }}>
+                  <Image
+                    source={{uri: item.thumb}}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      resizeMode: 'cover',
+                      borderRadius: 100,
+                    }}
+                  />
+                </View>
+                <View>
+                  <Text
+                    style={{color: 'white', fontSize: 14, fontWeight: '900'}}>
+                    {item.title}
+                  </Text>
+                  <Text style={{color: 'white', fontSize: 13}}>status</Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 13,
+              }}
+              numberOfLines={2}>
+              {item.description}
+            </Text>
+          </View>
+        </View>
+        <View
+          style={{
+            position: 'absolute',
+            bottom: 120, //edited
+            right: 0,
+          }}>
+          <TouchableOpacity
+            onPress={() => setLike(!like)}
+            style={{padding: 10}}>
+            <AntDesign
+              name={!like ? 'heart' : 'hearto'}
+              style={{color: like ? 'red' : 'white', fontSize: 25}}
+            />
+            <Text style={{color: 'white'}}>{item.likes}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={{padding: 10}}>
+            <Ionic
+              name="ios-chatbubble-outline"
+              style={{color: 'white', fontSize: 25}}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity style={{padding: 10}}>
+            <Ionic
+              name="paper-plane-outline"
+              style={{color: 'white', fontSize: 25}}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity style={{padding: 10}}>
+            <Feather
+              name="more-vertical"
+              style={{color: 'white', fontSize: 25}}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
     );
   };
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" />
       <SwiperFlatList
         vertical={true}
         data={videoList}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
         onChangeIndex={onChangeIndex}
+        style={styles.itemContainer}
       />
-      <View style={styles.headerL}>
-        <Text style={styles.hText}>Reels</Text>
-      </View>
       <View style={styles.headerR}>
-        <Icon name="camera" size={35} color="white" />
+        <Entypo name="plus" size={30} color="white" />
       </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'black',
-  },
-  itemContainer: {
-    flex: 1,
-  },
-  headerL: {
-    position: 'absolute',
-    top: 20,
-    left: 16,
-  },
-  headerR: {
-    position: 'absolute',
-    top: 20,
-    right: 16,
-  },
-  hText: {
-    fontSize: 20,
-    color: 'white',
-    fontWeight: '800',
-  },
-  backgroundVideo: {
-    height: height,
-    width: width,
-  },
-  bottomView: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    paddingVertical: 32,
-    paddingHorizontal: 16,
-  },
-  bottomProfileView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  profileImage: {
-    height: 50,
-    width: 50,
-  },
-  bText: {
-    fontSize: 16,
-    color: 'white',
-    fontWeight: '600',
-  },
-  descriptionText: {
-    fontSize: 14,
-    color: 'white',
-    fontWeight: '500',
-  },
-  child: {width, justifyContent: 'center'},
-  text: {fontSize: width * 0.5, textAlign: 'center'},
-});
 
 //make this component available to the app
 export default Reel;
