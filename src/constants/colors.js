@@ -30,4 +30,6 @@ export default colors = {
   mint: '#3EB489',
   oceanGreen: '#46C194',
   topaz: '#FACD73',
+  brightGray: '#E4F0EC',
+  antiFlashWhite: '#edeff9',
 };
