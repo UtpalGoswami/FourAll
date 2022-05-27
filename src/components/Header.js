@@ -11,9 +11,20 @@ import Entypo from 'react-native-vector-icons/Entypo';
  * @param  props.onPressNotification {object} - the onpress event of the notification
  */
 
-export default Header = ({onPress, title, onPressSearch, onPressDots}) => {
+export default Header = ({
+  onPress,
+  title,
+  onPressSearch,
+  onPressDots,
+  bgColor,
+}) => {
   return (
-    <View style={styles.container}>
+    <View
+      style={
+        bgColor
+          ? [styles.container, {backgroundColor: bgColor}]
+          : styles.container
+      }>
       {onPress ? (
         <AntDesign
           name="arrowleft"
