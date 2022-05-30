@@ -14,7 +14,7 @@ const rootReducer = {
   signUpReducer,
   dashboardReducer,
   profileReducer,
-  forgotPasswordReducer
+  forgotPasswordReducer,
 };
 
 // export const LogOut = () => ({type : 'RESET_STORE'});

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "116619958417",
+    "project_id": "fourall-1c48b",
+    "storage_bucket": "fourall-1c48b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:116619958417:android:0a463b16c6d596fafc4730",
+        "android_client_info": {
+          "package_name": "com.fourall"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "116619958417-psqhdoo7sdiqhmpogqp437tlp39aktim.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDliLSDurC7ubXsY7paAD-iwDHn1n4U37w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "116619958417-psqhdoo7sdiqhmpogqp437tlp39aktim.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

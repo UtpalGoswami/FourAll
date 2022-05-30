@@ -1,5 +1,5 @@
 // login
-// const variable for enable loader 
+// const variable for enable loader
 export const LOGIN_ENABLE_LOADER = 'LOGIN_ENABLE_LOADER';
 // const variable for disable loader
 export const LOGIN_DISABLE_LOADER = 'LOGIN_DISABLE_LOADER';
@@ -9,6 +9,15 @@ export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_RESPONSE = 'LOGIN_RESPONSE';
 // const variable for login faild
 export const LOGIN_FAILED = 'LOGIN_FAILED';
+// const variable for login request
+export const VERIFY_OTP_REQUEST = 'VERIFY_OTP_REQUEST';
+// const variable for login response
+export const VERIFY_OTP_RESPONSE = 'VERIFY_OTP_RESPONSE';
+// const variable for login faild
+export const VERIFY_OTP_FAILED = 'VERIFY_OTP_FAILED';
+export const UPDATE_PROFILE_REQUEST = 'UPDATE_PROFILE_REQUEST';
+export const UPDATE_PROFILE_RESPONSE = 'UPDATE_PROFILE_RESPONSE';
+export const UPDATE_PROFILE_FAILED = 'UPDATE_PROFILE_FAILED';
 // const variable for login request
 export const LOG_OUT = 'LOG_OUT';
 // const variable for login request
@@ -43,7 +52,7 @@ export const FORGOT_PASSWORD_LOADING_ENDED = 'FORGOT_PASSWORD_LOADING_ENDED';
 export const FORGOT_PASSWORD_FAILED = 'FORGOT_PASSWORD_FAILED';
 
 // dashboard
-// const variable for enable loader 
+// const variable for enable loader
 export const DASHBOARD_ENABLE_LOADER = 'DASHBOARD_ENABLE_LOADER';
 // const variable for disable loader
 export const DASHBOARD_DISABLE_LOADER = 'DASHBOARD_DISABLE_LOADER';
@@ -84,18 +93,22 @@ export const UNLINK_TATTLEBOX_REQUEST = 'UNLINK_TATTLEBOX_REQUEST';
 // const variable for unlink tattlebox response
 export const UNLINK_TATTLEBOX_RESPONSE = 'UNLINK_TATTLEBOX_RESPONSE';
 // const variable for unlink tattlebox
-export const GET_COMMON_REFRESH_FUNCTION_REQUEST = 'GET_COMMON_REFRESH_FUNCTION_REQUEST';
+export const GET_COMMON_REFRESH_FUNCTION_REQUEST =
+  'GET_COMMON_REFRESH_FUNCTION_REQUEST';
 // const variable for unlink tattlebox response
-export const GET_COMMON_REFRESH_FUNCTION_RESPONSE = 'GET_COMMON_REFRESH_FUNCTION_RESPONSE';
+export const GET_COMMON_REFRESH_FUNCTION_RESPONSE =
+  'GET_COMMON_REFRESH_FUNCTION_RESPONSE';
 // const variable for notification subscribe request
-export const PUSH_NOTIFICATION_SUBSCRIBE_REQUEST = 'PUSH_NOTIFICATION_SUBSCRIBE_REQUEST';
+export const PUSH_NOTIFICATION_SUBSCRIBE_REQUEST =
+  'PUSH_NOTIFICATION_SUBSCRIBE_REQUEST';
 // const variable for notification subscribe response
-export const PUSH_NOTIFICATION_SUBSCRIBE_RESPONSE = 'PUSH_NOTIFICATION_SUBSCRIBE_RESPONSE';
+export const PUSH_NOTIFICATION_SUBSCRIBE_RESPONSE =
+  'PUSH_NOTIFICATION_SUBSCRIBE_RESPONSE';
 // const variable for notification count
 export const PUSH_NOTIFICATION_COUNT = 'PUSH_NOTIFICATION_COUNT';
 
 // setting
-// const variable for enable loader 
+// const variable for enable loader
 export const SETTING_ENABLE_LOADER = 'SETTING_ENABLE_LOADER';
 // const variable for disable loader
 export const SETTING_DISABLE_LOADER = 'SETTING_DISABLE_LOADER';
@@ -112,15 +125,17 @@ export const SETTING_REQUEST_FAIL = 'SETTING_REQUEST_FAIL';
 // const variable for get tattlebox list request
 export const SETTING_RESPONSE_FAIL = 'SETTING_RESPONSE_FAIL';
 // const variable for device details
-export const SETTING_GET_DEVICE_DETAILS_REQUEST = 'SETTING_GET_DEVICE_DETAILS_REQUEST';
+export const SETTING_GET_DEVICE_DETAILS_REQUEST =
+  'SETTING_GET_DEVICE_DETAILS_REQUEST';
 // const variable for get device details response fail
-export const SETTING_GET_DEVICE_DETAILS_FAILED = 'SETTING_GET_DEVICE_DETAILS_FAILED';
+export const SETTING_GET_DEVICE_DETAILS_FAILED =
+  'SETTING_GET_DEVICE_DETAILS_FAILED';
 // const variable for get device details response
-export const SETTING_GET_DEVICE_DETAILS_RESPONSE = 'SETTING_GET_DEVICE_DETAILS_RESPONSE';
-
+export const SETTING_GET_DEVICE_DETAILS_RESPONSE =
+  'SETTING_GET_DEVICE_DETAILS_RESPONSE';
 
 // Profile
-// const variable for enable loader 
+// const variable for enable loader
 export const PROFILE_ENABLE_LOADER = 'PROFILE_ENABLE_LOADER';
 // const variable for disable loader
 export const PROFILE_DISABLE_LOADER = 'PROFILE_DISABLE_LOADER';

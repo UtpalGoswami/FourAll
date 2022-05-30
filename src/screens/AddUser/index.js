@@ -14,6 +14,13 @@ import {
 import {colors, I18n} from '../../constants';
 import {UselessTextInput} from '../../components';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+// Redux
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  requestUpdateProfile,
+  onUpdateProfileResponse,
+} from '../../redux/actions/loginActions';
+import NetInfo from '@react-native-community/netinfo';
 
 // Images
 import Images from '../../utils/Images';
@@ -25,6 +32,7 @@ import styles from './style';
  * @param  {Object} navigation - Use for navigation
  */
 export default AddUser = ({navigation}) => {
+  const dispatch = useDispatch();
   /**
    * Set user firstname value.
    * @description spinner {string} - Spinner for wait AddUser user request.
@@ -41,6 +49,51 @@ export default AddUser = ({navigation}) => {
   };
 
   const [filePath, setFilePath] = useState();
+
+  const updateProfileResponse = useSelector(
+    state => state.loginReducer.updateProfileResponse,
+  );
+
+  useEffect(() => {
+    console.log(
+      'Final updateProfile Response : ',
+      JSON.stringify(updateProfileResponse.data),
+    );
+    const setLoginResp = async () => {
+      if (
+        updateProfileResponse &&
+        Object.keys(updateProfileResponse).length !== 0 &&
+        updateProfileResponse.hasOwnProperty('status')
+      ) {
+        console.log(
+          'updateProfileResponse.status : ' + updateProfileResponse.status,
+        );
+        if (
+          updateProfileResponse.status === 200 &&
+          updateProfileResponse.data.status === 'success'
+        ) {
+          Alert.alert('Success', 'User details update successfully.');
+          navigation.navigate('AppNavigator');
+          var setResponse = {};
+          dispatch(onUpdateProfileResponse(setResponse));
+          setSpinner(false);
+        } else if (
+          updateProfileResponse.status === 200 &&
+          updateProfileResponse.data.status === 'error'
+        ) {
+          Alert.alert('Error', verifyOTPResponse?.data?.message);
+        } else if (updateProfileResponse.status === 403) {
+          Alert.alert('Error 403', 'Logout the user');
+        } else {
+          setSpinner(false);
+          Alert.alert('Error', 'Something went wrong please try again.');
+        }
+      } else {
+        setSpinner(false);
+      }
+    };
+    setLoginResp();
+  }, [updateProfileResponse]);
 
   const requestCameraPermission = async () => {
     if (Platform.OS === 'android') {
@@ -146,11 +199,29 @@ export default AddUser = ({navigation}) => {
     console.log('AddUser');
   }, []);
 
-  const validateInput = input => {
-    if (/[^0-9]/.test(input)) {
+  const isValidRequest = (userName, filePath) => {
+    if (
+      userName !== '' &&
+      userName !== null &&
+      filePath !== '' &&
+      filePath !== null
+    ) {
       return true;
     } else {
       return false;
+    }
+  };
+
+  const submit = () => {
+    if (isValidRequest(userName, filePath)) {
+      NetInfo.addEventListener(state => {
+        if (state.isConnected) {
+          setSpinner(true);
+          dispatch(requestUpdateProfile(userName, filePath));
+        } else {
+          Alert.alert('Error', 'connection.errorMessage');
+        }
+      });
     }
   };
 
@@ -201,10 +272,7 @@ export default AddUser = ({navigation}) => {
               placeholderTextColor={colors.lightGrey}
             />
           </View>
-          <TouchableOpacity
-            onPress={() => {
-              setModalVisible(true);
-            }}>
+          <TouchableOpacity onPress={submit}>
             <View style={styles.btnView}>
               <Text style={styles.loginBtn}>SUBMIT</Text>
             </View>
