@@ -41,8 +41,7 @@ export default SplashScreen = ({navigation}) => {
         userData?.user?.email !== null
       ) {
         Splashscreen.hide();
-        navigation.navigate('AuthNavigator');
-        // navigation.navigate('AppNavigator');
+        navigation.navigate('AppNavigator');
       } else {
         Splashscreen.hide();
         navigation.navigate('AuthNavigator');

@@ -10,6 +10,7 @@ const initialState = {
   loginResponse: {},
   verifyOTPResponse: {},
   updateProfileResponse: {},
+  resendOTPResponse: {},
 };
 
 /**
@@ -83,6 +84,24 @@ export default function loginReducer(state = initialState, action) {
         spinner: false,
       };
     case types.UPDATE_PROFILE_FAILED:
+      return {
+        ...state,
+        isLoggedIn: false,
+        spinner: false,
+      };
+    case types.RESEND_OTP_REQUEST:
+      return {
+        ...state,
+        email: action.email,
+        spinner: true,
+      };
+    case types.RESEND_OTP_RESPONSE:
+      return {
+        ...state,
+        resendOTPResponse: action.response,
+        spinner: false,
+      };
+    case types.RESEND_OTP_FAILED:
       return {
         ...state,
         isLoggedIn: false,

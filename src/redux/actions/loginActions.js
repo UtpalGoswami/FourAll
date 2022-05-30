@@ -18,19 +18,12 @@ export function requestLogin(email, device_type, device_token) {
   };
 }
 
-/**
- * @description  loginFailed - login failed action
- */
 export function loginFailed() {
   return {
     type: types.LOGIN_FAILED,
   };
 }
 
-/**
- * @description  onLoginResponse - login failed action
- * @param  {object} response - Login Response
- */
 export function onLoginResponse(response) {
   return {
     type: types.LOGIN_RESPONSE,
@@ -46,19 +39,12 @@ export function requestVerifyOTP(email, otp_number) {
   };
 }
 
-/**
- * @description  loginFailed - login failed action
- */
 export function verifyOTPRequestFailed() {
   return {
     type: types.VERIFY_OTP_FAILED,
   };
 }
 
-/**
- * @description  onLoginResponse - login failed action
- * @param  {object} response - Login Response
- */
 export function onVerifyOTPResponse(response) {
   return {
     type: types.VERIFY_OTP_RESPONSE,
@@ -74,22 +60,36 @@ export function requestUpdateProfile(userName, filePath) {
   };
 }
 
-/**
- * @description  loginFailed - login failed action
- */
 export function updateProfileFailed() {
   return {
     type: types.UPDATE_PROFILE_FAILED,
   };
 }
 
-/**
- * @description  onLoginResponse - login failed action
- * @param  {object} response - Login Response
- */
 export function onUpdateProfileResponse(response) {
   return {
     type: types.UPDATE_PROFILE_RESPONSE,
+    response,
+  };
+}
+
+export function requestResendOTP(email, otp_number) {
+  return {
+    type: types.RESEND_OTP_REQUEST,
+    email,
+    otp_number,
+  };
+}
+
+export function resendOTPRequestFailed() {
+  return {
+    type: types.RESEND_OTP_FAILED,
+  };
+}
+
+export function onResendOTPResponse(response) {
+  return {
+    type: types.RESEND_OTP_RESPONSE,
     response,
   };
 }

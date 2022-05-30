@@ -145,36 +145,28 @@ export const updateProfile = async (username, filePath) => {
   });
 };
 
-export const enrollUpload = (name, upload, enrollment_id) => {
-  const URL = BASE_URL + 'enrollment-upload';
-
-  console.log('enSubmit URL : ' + URL);
-  console.log('name, upload, enrollment_id : ', name, upload, enrollment_id);
-
+/**
+ * @function resendOTP resendOTP
+ * @param  email {string} - email for login user
+ */
+export const resendOTP = async email => {
+  const URL = SERVICEURL + 'sendOtp';
   return new Promise(async (resolve, reject) => {
-    const access_token = await getAccessToken();
-
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('upload', upload[0]);
-    formData.append('enrollment_id', enrollment_id + '');
-
+    const data = JSON.stringify({
+      email: email,
+    });
     const options = {
       headers: {
-        'Content-Type': 'multipart/form-data; ',
-        Authorization: 'Bearer ' + access_token,
+        'Content-Type': 'application/json',
       },
     };
     axios
-      .post(URL, formData, options)
+      .post(URL, data, options)
       .then(async response => {
-        console.log('response : ', JSON.stringify(response));
-
         resolve(response);
       })
-      .catch(({response}) => {
-        console.log('response : ', JSON.stringify(response));
-        resolve(response);
+      .catch(error => {
+        resolve(error);
       });
   });
 };

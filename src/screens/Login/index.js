@@ -55,14 +55,13 @@ export default Login = ({navigation}) => {
   }, []);
 
   useEffect(() => {
-    console.log('Final Login Resp : ', JSON.stringify(loginResponse.data));
+    // console.log('Final Login Resp : ', JSON.stringify(loginResponse));
     const setLoginResp = async () => {
       if (
         loginResponse &&
         Object.keys(loginResponse).length !== 0 &&
         loginResponse.hasOwnProperty('status')
       ) {
-        console.log('loginResponse.status : ' + loginResponse.status);
         if (
           loginResponse.status === 200 &&
           loginResponse.data.status === 'success'
@@ -111,7 +110,6 @@ export default Login = ({navigation}) => {
       Alert.alert('4All', 'Invalid email.');
       return false;
     } else {
-      console.log('API Calling..');
       return true;
     }
   };
@@ -138,7 +136,6 @@ export default Login = ({navigation}) => {
 
   const generateFCMToken = async () => {
     const fcmToken = await messaging().getToken();
-    console.log('fcmToken : ', fcmToken);
     return fcmToken;
   };
   return (

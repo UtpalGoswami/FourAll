@@ -8,12 +8,14 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
-import {CodeScreen} from '../../components';
+import {CodeScreen, Spinner} from '../../components';
 import {useDispatch, useSelector} from 'react-redux';
 import NetInfo from '@react-native-community/netinfo';
 import {
   onVerifyOTPResponse,
   requestVerifyOTP,
+  requestResendOTP,
+  onResendOTPResponse,
 } from '../../redux/actions/loginActions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // Images
@@ -49,6 +51,9 @@ export default Verification = ({route, navigation}) => {
   const verifyOTPResponse = useSelector(
     state => state.loginReducer.verifyOTPResponse,
   );
+  const resendOTPResponse = useSelector(
+    state => state.loginReducer.resendOTPResponse,
+  );
 
   useEffect(() => {
     let myInterval = setInterval(() => {
@@ -62,16 +67,13 @@ export default Verification = ({route, navigation}) => {
   });
 
   useEffect(() => {
-    console.log('Final verifyOTP Resp : ', JSON.stringify(verifyOTPResponse));
+    // console.log('Final verifyOTP Resp : ', JSON.stringify(verifyOTPResponse));
     const setVerifyOTPResp = async () => {
       if (
         verifyOTPResponse &&
         Object.keys(verifyOTPResponse).length !== 0 &&
         verifyOTPResponse.hasOwnProperty('status')
       ) {
-        console.log(
-          'verifyOTPResponse.status code : ' + verifyOTPResponse.status,
-        );
         if (
           verifyOTPResponse.status === 200 &&
           verifyOTPResponse.data.status === 'success'
@@ -102,6 +104,43 @@ export default Verification = ({route, navigation}) => {
     setVerifyOTPResp();
   }, [verifyOTPResponse]);
 
+  useEffect(() => {
+    // console.log('Final resend OTP Resp : ', JSON.stringify(resendOTPResponse));
+    const setResendOTPResp = async () => {
+      if (
+        resendOTPResponse &&
+        Object.keys(resendOTPResponse).length !== 0 &&
+        resendOTPResponse.hasOwnProperty('status')
+      ) {
+        if (
+          resendOTPResponse.status === 200 &&
+          resendOTPResponse.data.status === 'success'
+        ) {
+          Alert.alert(
+            'Success',
+            'OTP send Successfully, Please check your mail.',
+          );
+          var setResponse = {};
+          dispatch(onResendOTPResponse(setResponse));
+          setSpinner(false);
+        } else if (
+          resendOTPResponse.status === 200 &&
+          resendOTPResponse.data.status === 'error'
+        ) {
+          Alert.alert('Error', resendOTPResponse?.data?.message);
+        } else if (resendOTPResponse.status === 403) {
+          Alert.alert('Error 403', 'Logout the user');
+        } else {
+          setSpinner(false);
+          Alert.alert('Error', 'Something went wrong please try again.');
+        }
+      } else {
+        setSpinner(false);
+      }
+    };
+    setResendOTPResp();
+  }, [resendOTPResponse]);
+
   const validateOTP = () => {
     if (
       codeOne !== '' &&
@@ -120,7 +159,6 @@ export default Verification = ({route, navigation}) => {
   };
 
   const verifyOTP = () => {
-    console.log('Call the function');
     if (validateOTP()) {
       const finalOTP =
         codeOne.toString() +
@@ -130,7 +168,6 @@ export default Verification = ({route, navigation}) => {
         codeFive.toString() +
         codeSix.toString();
       setOtp(finalOTP);
-      console.log('finalOTP : ', finalOTP);
       NetInfo.addEventListener(state => {
         if (state.isConnected) {
           setSpinner(true);
@@ -144,49 +181,65 @@ export default Verification = ({route, navigation}) => {
     }
   };
 
+  const resendOTP = () => {
+    NetInfo.addEventListener(state => {
+      if (state.isConnected) {
+        setSpinner(true);
+        dispatch(requestResendOTP(UserDetails.user.email));
+      } else {
+        Alert.alert('Error', 'Please check your internet connection.');
+      }
+    });
+  };
+
   return (
     <SafeAreaView style={styles.safeView}>
       <ImageBackground source={Images.AppBGImage} style={styles.container}>
-        <View style={styles.loginView}>
-          <Image source={Images.AuthLogo} style={styles.logoImage} />
-          <View style={styles.textView}>
-            <Text style={styles.welcomeText}>Verification</Text>
-            <Text style={styles.descText}>Enter verification code</Text>
-            <Text style={styles.descText}>which is sent on your email</Text>
-          </View>
-          <View style={styles.otpView}>
-            <CodeScreen
-              setCodeOne={setCodeOne}
-              setCodeTwo={setCodeTwo}
-              setCodeThree={setCodeThree}
-              setCodeFour={setCodeFour}
-              setCodeFive={setCodeFive}
-              setCodeSix={setCodeSix}
-            />
-          </View>
-          <TouchableOpacity onPress={verifyOTP}>
-            <View style={styles.btnView}>
-              <Text style={styles.loginBtn}>Verify</Text>
+        {spinner ? (
+          <Spinner />
+        ) : (
+          <View style={styles.loginView}>
+            <Image source={Images.AuthLogo} style={styles.logoImage} />
+            <View style={styles.textView}>
+              <Text style={styles.welcomeText}>Verification</Text>
+              <Text style={styles.descText}>Enter verification code</Text>
+              <Text style={styles.descText}>which is sent on your email</Text>
             </View>
-          </TouchableOpacity>
-
-          <View style={styles.forgotView}>
-            {timer === 0 ? (
-              <TouchableOpacity
-                onPress={() => {
-                  setTimer(59);
-                }}>
-                <Text style={styles.forgotTextLink}>Resend</Text>
-              </TouchableOpacity>
-            ) : (
-              <View style={styles.forgotView}>
-                <Text style={styles.forgotText}>Resend</Text>
-                <Text style={styles.forgotText}>-</Text>
-                <Text style={styles.forgotText}>{timer} sec</Text>
+            <View style={styles.otpView}>
+              <CodeScreen
+                setCodeOne={setCodeOne}
+                setCodeTwo={setCodeTwo}
+                setCodeThree={setCodeThree}
+                setCodeFour={setCodeFour}
+                setCodeFive={setCodeFive}
+                setCodeSix={setCodeSix}
+              />
+            </View>
+            <TouchableOpacity onPress={verifyOTP}>
+              <View style={styles.btnView}>
+                <Text style={styles.loginBtn}>Verify</Text>
               </View>
-            )}
+            </TouchableOpacity>
+
+            <View style={styles.forgotView}>
+              {timer === 0 ? (
+                <TouchableOpacity
+                  onPress={() => {
+                    setTimer(59);
+                    resendOTP();
+                  }}>
+                  <Text style={styles.forgotTextLink}>Resend</Text>
+                </TouchableOpacity>
+              ) : (
+                <View style={styles.forgotView}>
+                  <Text style={styles.forgotText}>Resend</Text>
+                  <Text style={styles.forgotText}>-</Text>
+                  <Text style={styles.forgotText}>{timer} sec</Text>
+                </View>
+              )}
+            </View>
           </View>
-        </View>
+        )}
       </ImageBackground>
     </SafeAreaView>
   );

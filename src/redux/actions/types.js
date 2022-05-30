@@ -9,12 +9,12 @@ export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_RESPONSE = 'LOGIN_RESPONSE';
 // const variable for login faild
 export const LOGIN_FAILED = 'LOGIN_FAILED';
-// const variable for login request
 export const VERIFY_OTP_REQUEST = 'VERIFY_OTP_REQUEST';
-// const variable for login response
 export const VERIFY_OTP_RESPONSE = 'VERIFY_OTP_RESPONSE';
-// const variable for login faild
 export const VERIFY_OTP_FAILED = 'VERIFY_OTP_FAILED';
+export const RESEND_OTP_REQUEST = 'RESEND_OTP_REQUEST';
+export const RESEND_OTP_RESPONSE = 'RESEND_OTP_RESPONSE';
+export const RESEND_OTP_FAILED = 'RESEND_OTP_FAILED';
 export const UPDATE_PROFILE_REQUEST = 'UPDATE_PROFILE_REQUEST';
 export const UPDATE_PROFILE_RESPONSE = 'UPDATE_PROFILE_RESPONSE';
 export const UPDATE_PROFILE_FAILED = 'UPDATE_PROFILE_FAILED';

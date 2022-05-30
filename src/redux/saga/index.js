@@ -5,6 +5,7 @@ import signUpSaga from './signUpSaga';
 import dashboardSaga from './dashboardSaga';
 import forgotPasswordSaga from './forgotPasswordSaga';
 import verifyOTPSaga from './verifyOTPSaga';
+import resendOTPSaga from './resendOTPSaga';
 import updateProfileSaga from './updateProfileSaga';
 
 /**
@@ -24,4 +25,6 @@ export default function* rootSaga() {
   yield all([takeEvery(types.VERIFY_OTP_REQUEST, verifyOTPSaga)]);
   // Take update profile saga request
   yield all([takeEvery(types.UPDATE_PROFILE_REQUEST, updateProfileSaga)]);
+  // Take update profile saga request
+  yield all([takeEvery(types.RESEND_OTP_REQUEST, resendOTPSaga)]);
 }

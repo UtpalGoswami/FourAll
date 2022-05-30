@@ -10,6 +10,7 @@ import {
   PermissionsAndroid,
   Platform,
   Alert,
+  BackHandler,
 } from 'react-native';
 import {colors, I18n} from '../../constants';
 import {UselessTextInput} from '../../components';
@@ -55,25 +56,21 @@ export default AddUser = ({navigation}) => {
   );
 
   useEffect(() => {
-    console.log(
-      'Final updateProfile Response : ',
-      JSON.stringify(updateProfileResponse.data),
-    );
+    // console.log(
+    //   'Final updateProfile Response : ',
+    //   JSON.stringify(updateProfileResponse),
+    // );
     const setLoginResp = async () => {
       if (
         updateProfileResponse &&
         Object.keys(updateProfileResponse).length !== 0 &&
         updateProfileResponse.hasOwnProperty('status')
       ) {
-        console.log(
-          'updateProfileResponse.status : ' + updateProfileResponse.status,
-        );
         if (
           updateProfileResponse.status === 200 &&
           updateProfileResponse.data.status === 'success'
         ) {
-          Alert.alert('Success', 'User details update successfully.');
-          navigation.navigate('AppNavigator');
+          setModalVisible(true);
           var setResponse = {};
           dispatch(onUpdateProfileResponse(setResponse));
           setSpinner(false);
@@ -195,10 +192,6 @@ export default AddUser = ({navigation}) => {
     });
   };
 
-  useEffect(() => {
-    console.log('AddUser');
-  }, []);
-
   const isValidRequest = (userName, filePath) => {
     if (
       userName !== '' &&
@@ -309,6 +302,7 @@ export default AddUser = ({navigation}) => {
                 <TouchableOpacity
                   onPress={() => {
                     setModalVisible(false);
+                    BackHandler.exitApp();
                   }}
                   style={[styles.button, {marginStart: 10}]}>
                   <Text style={styles.textStyle}>Don't Allow</Text>
