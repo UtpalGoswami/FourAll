@@ -210,7 +210,7 @@ const Reel = ({navigation}) => {
   const renderItem = ({item, index}) => {
     return (
       <View style={styles.itemContainer}>
-        <Video
+        {/* <Video
           source={{
             uri: item.sources[0],
           }}
@@ -241,7 +241,7 @@ const Reel = ({navigation}) => {
             borderRadius: 100,
             padding: mute ? 20 : 0,
           }}
-        />
+        /> */}
         <View
           style={{
             position: 'absolute',

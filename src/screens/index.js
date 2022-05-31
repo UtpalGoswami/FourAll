@@ -5,6 +5,7 @@ export {default as Login} from './Login';
 export {default as ForgotPassword} from './ForgotPassword';
 export {default as Verification} from './Verification';
 export {default as AddUser} from './AddUser';
+export {default as Logout} from './Logout';
 
 // App screens
 export {default as Chat} from './Chat';

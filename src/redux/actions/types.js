@@ -19,7 +19,7 @@ export const UPDATE_PROFILE_REQUEST = 'UPDATE_PROFILE_REQUEST';
 export const UPDATE_PROFILE_RESPONSE = 'UPDATE_PROFILE_RESPONSE';
 export const UPDATE_PROFILE_FAILED = 'UPDATE_PROFILE_FAILED';
 // const variable for login request
-export const LOG_OUT = 'LOG_OUT';
+export const LOGOUT = 'LOGOUT';
 // const variable for login request
 export const LOGOUT_RESPONSE = 'LOGOUT_RESPONSE';
 
@@ -50,6 +50,13 @@ export const FORGOT_PASSWORD_RESPONSE = 'FORGOT_PASSWORD_RESPONSE';
 export const FORGOT_PASSWORD_LOADING_ENDED = 'FORGOT_PASSWORD_LOADING_ENDED';
 // const variable for signup failed
 export const FORGOT_PASSWORD_FAILED = 'FORGOT_PASSWORD_FAILED';
+
+// Help
+export const HELP_ENABLE_LOADER = 'HELP_ENABLE_LOADER';
+export const HELP_DISABLE_LOADER = 'HELP_DISABLE_LOADER';
+export const HELP_REQUEST = 'HELP_REQUEST';
+export const HELP_RESPONSE = 'HELP_RESPONSE';
+export const HELP_FAILED = 'HELP_FAILED';
 
 // dashboard
 // const variable for enable loader

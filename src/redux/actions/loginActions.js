@@ -117,6 +117,13 @@ export function disableLoader() {
  */
 export function logOut() {
   return {
-    type: types.LOG_OUT,
+    type: types.LOGOUT,
+  };
+}
+
+export function logOutResponse(response) {
+  return {
+    type: types.LOGOUT_RESPONSE,
+    response,
   };
 }

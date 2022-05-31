@@ -56,10 +56,10 @@ export default AddUser = ({navigation}) => {
   );
 
   useEffect(() => {
-    // console.log(
-    //   'Final updateProfile Response : ',
-    //   JSON.stringify(updateProfileResponse),
-    // );
+    console.log(
+      'Final updateProfile Response : ',
+      JSON.stringify(updateProfileResponse.data),
+    );
     const setLoginResp = async () => {
       if (
         updateProfileResponse &&
@@ -201,6 +201,7 @@ export default AddUser = ({navigation}) => {
     ) {
       return true;
     } else {
+      Alert.alert('Error', 'Please add user name and profile picture.');
       return false;
     }
   };

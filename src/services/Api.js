@@ -78,10 +78,9 @@ export const LogIn = async (email, device_type, device_token) => {
 };
 
 /**
- * @function LogIn LogIn
- * @param  email {string} - email for login user
- * @param  device_type {string} - device_type for login user
- * @param  device_token {string} - device_type for login user
+ * @function VerifyOTP VerifyOTP
+ * @param  email {string} - email
+ * @param  otp_number {string} - otp_number
  */
 export const VerifyOTP = async (email, otp_number) => {
   const URL = SERVICEURL + 'verifyOtp';
@@ -111,10 +110,9 @@ export const VerifyOTP = async (email, otp_number) => {
 };
 
 /**
- * @function LogIn LogIn
- * @param  email {string} - email for login user
- * @param  device_type {string} - device_type for login user
- * @param  device_token {string} - device_type for login user
+ * @function updateProfile updateProfile
+ * @param  username {string} - username
+ * @param  filePath {string} - filePath
  */
 export const updateProfile = async (username, filePath) => {
   const URL = SERVICEURL + 'updateProfile';
@@ -199,6 +197,48 @@ export const ForgotPassword = email => {
   //             resolve(error);
   //         })
   // });
+};
+
+export const Logout = async () => {
+  const URL = SERVICEURL + 'logout';
+  return new Promise(async (resolve, reject) => {
+    const access_token = await getAccessToken();
+    const options = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + access_token,
+      },
+    };
+    axios
+      .post(URL, {}, options)
+      .then(response => {
+        resolve(response);
+      })
+      .catch(error => {
+        resolve(error);
+      });
+  });
+};
+
+export const help = async () => {
+  const URL = SERVICEURL + 'help';
+  return new Promise(async (resolve, reject) => {
+    const access_token = await getAccessToken();
+    const options = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + access_token,
+      },
+    };
+    axios
+      .get(URL, {}, options)
+      .then(response => {
+        resolve(response);
+      })
+      .catch(error => {
+        resolve(error);
+      });
+  });
 };
 
 /**

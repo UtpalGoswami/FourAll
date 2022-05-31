@@ -8,6 +8,8 @@ import dashboardReducer from './dashboardReducer';
 import profileReducer from './profileReducer';
 // import forgotPasswordReducer reducer
 import forgotPasswordReducer from './forgotPasswordReducer';
+// import forgotPasswordReducer reducer
+import helpReducer from './helpReducer';
 
 const rootReducer = {
   loginReducer,
@@ -15,15 +17,7 @@ const rootReducer = {
   dashboardReducer,
   profileReducer,
   forgotPasswordReducer,
+  helpReducer,
 };
-
-// export const LogOut = () => ({type : 'RESET_STORE'});
-
-// const rootReducer = (state, action) => {
-//   if(action.type === 'RESET_STORE'){
-//     state={};
-//   }
-//   return appReducer(state, action)
-// }
 
 export default rootReducer;

@@ -55,7 +55,7 @@ export default Login = ({navigation}) => {
   }, []);
 
   useEffect(() => {
-    // console.log('Final Login Resp : ', JSON.stringify(loginResponse));
+    console.log('Final Login Resp : ', JSON.stringify(loginResponse.data));
     const setLoginResp = async () => {
       if (
         loginResponse &&

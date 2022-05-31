@@ -11,6 +11,7 @@ const initialState = {
   verifyOTPResponse: {},
   updateProfileResponse: {},
   resendOTPResponse: {},
+  logoutResponse: {},
 };
 
 /**
@@ -107,9 +108,16 @@ export default function loginReducer(state = initialState, action) {
         isLoggedIn: false,
         spinner: false,
       };
-    case types.LOG_OUT:
+    case types.LOGOUT:
       return {
         ...state,
+        isLoggedIn: false,
+        spinner: false,
+      };
+    case types.LOGOUT_RESPONSE:
+      return {
+        ...state,
+        logoutResponse: action.response,
         isLoggedIn: false,
         spinner: false,
       };

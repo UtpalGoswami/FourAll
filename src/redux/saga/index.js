@@ -7,6 +7,8 @@ import forgotPasswordSaga from './forgotPasswordSaga';
 import verifyOTPSaga from './verifyOTPSaga';
 import resendOTPSaga from './resendOTPSaga';
 import updateProfileSaga from './updateProfileSaga';
+import logoutSaga from './logoutSaga';
+import helpSaga from './helpSaga';
 
 /**
  * Create root saga file for manage api request and response
@@ -27,4 +29,8 @@ export default function* rootSaga() {
   yield all([takeEvery(types.UPDATE_PROFILE_REQUEST, updateProfileSaga)]);
   // Take update profile saga request
   yield all([takeEvery(types.RESEND_OTP_REQUEST, resendOTPSaga)]);
+  // Take update profile saga request
+  yield all([takeEvery(types.LOGOUT, logoutSaga)]);
+  // Take update profile saga request
+  yield all([takeEvery(types.HELP_REQUEST, helpSaga)]);
 }

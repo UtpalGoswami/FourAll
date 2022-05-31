@@ -172,6 +172,15 @@ export default Setting = ({navigation}) => {
               />
             }
           />
+          <Item
+            text={'Logout'}
+            onPress={() => {
+              navigation.navigate('Logout');
+            }}
+            IconType={
+              <MaterialIcons name="logout" size={20} color={colors.white} />
+            }
+          />
         </ScrollView>
       </View>
     </SafeAreaView>

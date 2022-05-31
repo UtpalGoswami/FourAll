@@ -19,6 +19,7 @@ import {
   Views,
   MyGroups,
   UserProfile,
+  Logout,
 } from '../screens';
 import {colors} from '../constants';
 import Images from '../utils/Images';
@@ -154,6 +155,7 @@ const SettingdStack = () => (
     <Stack.Screen name="TermsAndConditions" component={TermsAndConditions} />
     <Stack.Screen name="Feedback" component={Feedback} />
     <Stack.Screen name="ContactUs" component={ContactUs} />
+    <Stack.Screen name="Logout" component={Logout} />
   </Stack.Navigator>
 );
 
