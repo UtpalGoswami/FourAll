@@ -11,6 +11,7 @@ import logoutSaga from './logoutSaga';
 import helpSaga from './helpSaga';
 import feedbackSaga from './feedbackSaga';
 import termsAndConditionsSaga from './termsAndConditionsSaga';
+import privacyPolicySaga from './privacyPolicySaga';
 
 /**
  * Create root saga file for manage api request and response
@@ -41,4 +42,6 @@ export default function* rootSaga() {
   yield all([
     takeEvery(types.TERMSANDCONDITIONS_REQUEST, termsAndConditionsSaga),
   ]);
+  // Take update profile saga request
+  yield all([takeEvery(types.PRIVACYPOLICY_REQUEST, privacyPolicySaga)]);
 }

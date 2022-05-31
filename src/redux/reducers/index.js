@@ -14,6 +14,7 @@ import helpReducer from './helpReducer';
 import feedbackReducer from './feedbackReducer';
 // import forgotPasswordReducer reducer
 import termsAndConditionsReducer from './termsAndConditionsReducer';
+import privacyPolicyReducer from './privacyPolicyReducer';
 
 const rootReducer = {
   loginReducer,
@@ -24,6 +25,7 @@ const rootReducer = {
   helpReducer,
   feedbackReducer,
   termsAndConditionsReducer,
+  privacyPolicyReducer,
 };
 
 export default rootReducer;

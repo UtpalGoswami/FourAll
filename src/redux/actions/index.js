@@ -6,6 +6,7 @@ import * as profileActions from './profileActions';
 import * as helpActions from './helpActions';
 import * as feedbackActions from './feedbackActions';
 import * as termsAndConditionsActions from './termsAndConditionsActions';
+import * as privacyPolicyActions from './privacyPolicyActions';
 
 const ActionCreators = {
   ...loginActions,
@@ -15,6 +16,7 @@ const ActionCreators = {
   ...helpActions,
   ...feedbackActions,
   ...termsAndConditionsActions,
+  ...privacyPolicyActions,
 };
 
 export default ActionCreators;

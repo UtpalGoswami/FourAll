@@ -289,6 +289,27 @@ export const termsConditions = async () => {
   });
 };
 
+export const privacyPolicy = async () => {
+  const URL = SERVICEURL + 'privacy_policy';
+  return new Promise(async (resolve, reject) => {
+    const access_token = await getAccessToken();
+    const options = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + access_token,
+      },
+    };
+    axios
+      .get(URL, {}, options)
+      .then(response => {
+        resolve(response);
+      })
+      .catch(error => {
+        resolve(error);
+      });
+  });
+};
+
 /**
  * @function clearAsyncStorageData clear AsyncStorage Data
  * @description clear all local async storage data
