@@ -10,6 +10,10 @@ import profileReducer from './profileReducer';
 import forgotPasswordReducer from './forgotPasswordReducer';
 // import forgotPasswordReducer reducer
 import helpReducer from './helpReducer';
+// import forgotPasswordReducer reducer
+import feedbackReducer from './feedbackReducer';
+// import forgotPasswordReducer reducer
+import termsAndConditionsReducer from './termsAndConditionsReducer';
 
 const rootReducer = {
   loginReducer,
@@ -18,6 +22,8 @@ const rootReducer = {
   profileReducer,
   forgotPasswordReducer,
   helpReducer,
+  feedbackReducer,
+  termsAndConditionsReducer,
 };
 
 export default rootReducer;

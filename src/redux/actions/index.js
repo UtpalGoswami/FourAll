@@ -4,6 +4,8 @@ import * as signUpActions from './signUpActions';
 import * as dashboardActions from './dashboardActions';
 import * as profileActions from './profileActions';
 import * as helpActions from './helpActions';
+import * as feedbackActions from './feedbackActions';
+import * as termsAndConditionsActions from './termsAndConditionsActions';
 
 const ActionCreators = {
   ...loginActions,
@@ -11,6 +13,8 @@ const ActionCreators = {
   ...dashboardActions,
   ...profileActions,
   ...helpActions,
+  ...feedbackActions,
+  ...termsAndConditionsActions,
 };
 
 export default ActionCreators;

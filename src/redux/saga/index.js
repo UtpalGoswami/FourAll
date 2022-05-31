@@ -9,6 +9,8 @@ import resendOTPSaga from './resendOTPSaga';
 import updateProfileSaga from './updateProfileSaga';
 import logoutSaga from './logoutSaga';
 import helpSaga from './helpSaga';
+import feedbackSaga from './feedbackSaga';
+import termsAndConditionsSaga from './termsAndConditionsSaga';
 
 /**
  * Create root saga file for manage api request and response
@@ -33,4 +35,10 @@ export default function* rootSaga() {
   yield all([takeEvery(types.LOGOUT, logoutSaga)]);
   // Take update profile saga request
   yield all([takeEvery(types.HELP_REQUEST, helpSaga)]);
+  // Take update profile saga request
+  yield all([takeEvery(types.FEEDBACK_REQUEST, feedbackSaga)]);
+  // Take update profile saga request
+  yield all([
+    takeEvery(types.TERMSANDCONDITIONS_REQUEST, termsAndConditionsSaga),
+  ]);
 }

@@ -241,6 +241,54 @@ export const help = async () => {
   });
 };
 
+export const feedback = async (name, email, subject, message) => {
+  const URL = SERVICEURL + 'feedback';
+  return new Promise(async (resolve, reject) => {
+    const access_token = await getAccessToken();
+    const data = JSON.stringify({
+      name: name,
+      email: email,
+      subject: subject,
+      message: message,
+    });
+    const options = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + access_token,
+      },
+    };
+    axios
+      .post(URL, data, options)
+      .then(response => {
+        resolve(response);
+      })
+      .catch(error => {
+        resolve(error);
+      });
+  });
+};
+
+export const termsConditions = async () => {
+  const URL = SERVICEURL + 'terms_conditions';
+  return new Promise(async (resolve, reject) => {
+    const access_token = await getAccessToken();
+    const options = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + access_token,
+      },
+    };
+    axios
+      .get(URL, {}, options)
+      .then(response => {
+        resolve(response);
+      })
+      .catch(error => {
+        resolve(error);
+      });
+  });
+};
+
 /**
  * @function clearAsyncStorageData clear AsyncStorage Data
  * @description clear all local async storage data

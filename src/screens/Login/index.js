@@ -84,7 +84,7 @@ export default Login = ({navigation}) => {
           loginResponse.status === 200 &&
           loginResponse.data.status === 'error'
         ) {
-          Alert.alert('Error', verifyOTPResponse?.data?.message);
+          Alert.alert('Error', loginResponse?.data?.message);
         } else if (loginResponse.status === 403) {
           Alert.alert('Error 403', 'Logout the user');
         } else {
